@@ -18,6 +18,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
+    //Test
     Scanner scanner = new Scanner(System.in);
     private PrinterManager manager = new PrinterManager();
 
