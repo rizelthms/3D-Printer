@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="1zB4vRtv680rKWPriYnLtUo4mFO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jsa06/3dPrintScheduler&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="models" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="nl.saxion.Main" />
+      <module name="3dprintscheduler" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="nl.saxion.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestSuite.AddNewPrintTask" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="3dprintscheduler" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestSuite" />
+      <option name="METHOD_NAME" value="AddNewPrintTask" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestSuite.AddNewPrintTaskAndStartQueue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="3dprintscheduler" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestSuite" />
+      <option name="METHOD_NAME" value="AddNewPrintTaskAndStartQueue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestSuite.AddNewPrintTaskAndStartQueueAndCompletePrint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="3dprintscheduler" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestSuite" />
+      <option name="METHOD_NAME" value="AddNewPrintTaskAndStartQueueAndCompletePrint" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestSuite.DisplaySpools" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="3dprintscheduler" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestSuite" />
+      <option name="METHOD_NAME" value="DisplaySpools" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestSuite.AddNewPrintTaskAndStartQueueAndCompletePrint" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.TestSuite.AddNewPrintTaskAndStartQueue" />
+        <item itemvalue="JUnit.TestSuite.AddNewPrintTask" />
+        <item itemvalue="JUnit.TestSuite.DisplaySpools" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="" />
+      <created>1633608379439</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633608379439</updated>
+      <workItem from="1633608383767" duration="12581000" />
+      <workItem from="1635154769550" duration="24798000" />
+      <workItem from="1636016411520" duration="4353000" />
+      <workItem from="1636538624255" duration="228000" />
+      <workItem from="1636620586396" duration="2894000" />
+      <workItem from="1636967120271" duration="666000" />
+      <workItem from="1636969509391" duration="5062000" />
+      <workItem from="1637158509560" duration="637000" />
+      <workItem from="1637159256731" duration="623000" />
+      <workItem from="1637323075471" duration="3265000" />
+      <workItem from="1637569494919" duration="12307000" />
+      <workItem from="1639383018975" duration="6807000" />
+      <workItem from="1639656137065" duration="1068000" />
+      <workItem from="1640246758851" duration="1437000" />
+      <workItem from="1642086042396" duration="222000" />
+      <workItem from="1642682320743" duration="908000" />
+      <workItem from="1643020870290" duration="29000" />
+      <workItem from="1643021425434" duration="413000" />
+      <workItem from="1643205772536" duration="1156000" />
+      <workItem from="1643371121148" duration="413000" />
+      <workItem from="1643810659735" duration="4219000" />
+      <workItem from="1644307390732" duration="532000" />
+      <workItem from="1644408453504" duration="7016000" />
+      <workItem from="1644587379893" duration="2135000" />
+      <workItem from="1644825147530" duration="1572000" />
+      <workItem from="1645601278161" duration="583000" />
+      <workItem from="1647523280737" duration="1388000" />
+      <workItem from="1648110153041" duration="3474000" />
+      <workItem from="1648195287750" duration="678000" />
+      <workItem from="1648802840101" duration="243000" />
+      <workItem from="1649076676511" duration="14437000" />
+      <workItem from="1649408852223" duration="12563000" />
+      <workItem from="1653296757615" duration="1692000" />
+      <workItem from="1657193676135" duration="1112000" />
+      <workItem from="1662032520655" duration="432000" />
+      <workItem from="1662375216845" duration="3631000" />
+      <workItem from="1662708240954" duration="491000" />
+      <workItem from="1662971853004" duration="8743000" />
+      <workItem from="1663141516064" duration="562000" />
+      <workItem from="1664785367813" duration="11236000" />
+      <workItem from="1665567813313" duration="15000" />
+      <workItem from="1666613360293" duration="4480000" />
+      <workItem from="1668094017045" duration="2994000" />
+      <workItem from="1668499826361" duration="19903000" />
+      <workItem from="1668692184386" duration="6162000" />
+      <workItem from="1668761896180" duration="2088000" />
+      <workItem from="1668765866129" duration="1145000" />
+      <workItem from="1670937013201" duration="129000" />
+      <workItem from="1670937158167" duration="28000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
