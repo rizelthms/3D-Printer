@@ -7,6 +7,8 @@ public class Menu {
 
     Scanner scanner = new Scanner(System.in);
 
+    Main main;
+
     //Call this method from the Main class
     public void menuSwitch(){
         int choice = 1; //Why 1?
@@ -18,23 +20,23 @@ public class Menu {
             choice = menuChoice(9);
             System.out.println("----------------------------------->>");
             if (choice == 1) {
-                addNewPrintTask();
+                main.addNewPrintTask();
             } else if (choice == 2) {
-                registerPrintCompletion();
+                main.registerPrintCompletion();
             } else if (choice == 3) {
-                registerPrinterFailure();
+                main.registerPrinterFailure();
             } else if (choice == 4) {
-                changePrintStrategy();
+                main.changePrintStrategy();
             } else if (choice == 5) {
-                startPrintQueue();
+                main.startPrintQueue();
             } else if (choice == 6) {
-                showPrints();
+                main.showPrints();
             } else if (choice == 7) {
-                showPrinters();
+                main.showPrinters();
             } else if (choice == 8) {
-                showSpools();
+                main.showSpools();
             } else if (choice == 9) {
-                showPendingPrintTasks();
+                main.showPendingPrintTasks();
             }
         }
         exit();

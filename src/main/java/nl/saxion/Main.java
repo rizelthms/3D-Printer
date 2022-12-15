@@ -1,6 +1,7 @@
 package nl.saxion;
 
 import nl.saxion.Models.*;
+import nl.saxion.facade.PrinterFacade;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,6 +16,7 @@ import java.util.*;
 
 public class Main {
 
+    PrinterFacade facade;
     PrinterManager manager;
 
     PrintTaskManager taskManager;
@@ -31,6 +33,11 @@ public class Main {
 
     //Read data and loop menu options
     public void run(String[] args) {
+        facade = new PrinterFacade();
+        manager = new PrinterManager(facade);
+        taskManager = new PrintTaskManager(facade);
+        menu = new Menu();
+
         if(args.length > 0) {
             readPrintsFromFile(args[0]);
             readSpoolsFromFile(args[1]);
@@ -46,7 +53,7 @@ public class Main {
     }
 
     //Start printer queue
-    private void startPrintQueue() {
+    public void startPrintQueue() {
         System.out.println("<<---------- Starting Print Queue ---------->");
         taskManager.startInitialQueue();
         System.out.println("<----------------------------------->>");
@@ -60,7 +67,7 @@ public class Main {
     // This method only changes the name but does not actually work.
     // It exists to demonstrate the output.
     // in the future strategy might be added.
-    private void changePrintStrategy() {
+    public void changePrintStrategy() {
         System.out.println("<<---------- Change Strategy ------------->");
         System.out.println("- Current strategy: " + printStrategy);
         System.out.println("- 1: Less Spool Changes");
@@ -76,7 +83,7 @@ public class Main {
     }
 
     // TODO: This should be based on which printer is finished printing.
-    private void registerPrintCompletion() {
+    public void registerPrintCompletion() {
         ArrayList<Printer> printers = manager.getPrinters();
         System.out.println("<<---------- Currently Running Printers ---------->");
         for(Printer p: printers) {
@@ -91,7 +98,7 @@ public class Main {
         manager.registerCompletion(printerId);
     }
 
-    private void registerPrinterFailure() {
+    public void registerPrinterFailure() {
         ArrayList<Printer> printers = manager.getPrinters();
         System.out.println("<<---------- Currently Running Printers ---------->");
         for(Printer p: printers) {
@@ -107,7 +114,7 @@ public class Main {
         System.out.println("<----------------------------------->>");
     }
 
-    private void addNewPrintTask() {
+    public void addNewPrintTask() {
         List<String> colors = new ArrayList<>();
         var prints = taskManager.getPrints();
         System.out.println("<<---------- New Print Task ---------->");
@@ -171,7 +178,7 @@ public class Main {
         System.out.println("<---------------------------->>");
     }
 
-    private void showPrints() {
+    public void showPrints() {
         var prints = taskManager.getPrints();
         System.out.println("<<---------- Available prints ---------->");
         for (var p : prints) {
@@ -180,7 +187,7 @@ public class Main {
         System.out.println("<-------------------------------------->>");
     }
 
-    private void showSpools() {
+    public void showSpools() {
         var spools = manager.getSpools();
         System.out.println("<<---------- Spools ---------->");
         for (var spool : spools) {
@@ -189,7 +196,7 @@ public class Main {
         System.out.println("<---------------------------->>");
     }
 
-    private void showPrinters() {
+    public void showPrinters() {
         var printers = manager.getPrinters();
         System.out.println("<<--------- Available printers --------->");
         for (var p : printers) {
@@ -204,7 +211,7 @@ public class Main {
         System.out.println("<-------------------------------------->>");
     }
 
-    private void showPendingPrintTasks() {
+    public void showPendingPrintTasks() {
         ArrayList<PrintTask> printTasks = taskManager.getPendingPrintTasks();
         System.out.println("<<--------- Pending Print Tasks --------->");
         for (var p : printTasks) {

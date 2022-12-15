@@ -24,10 +24,10 @@ public class PrinterFacade {
     private ArrayList<PrintTask> pendingPrintTasks = new ArrayList<>();
     private HashMap<Printer, PrintTask> runningPrintTasks = new HashMap();
 
-    public PrinterFacade(PrinterManager printerManager, PrintTaskManager printTaskManager) {
-        this.printerManager = printerManager;
-        this.printTaskManager = printTaskManager;
-    }
+//    public PrinterFacade(PrinterManager printerManager, PrintTaskManager printTaskManager) {
+//        this.printerManager = printerManager;
+//        this.printTaskManager = printTaskManager;
+//    }
 
     //PrinterManager methods
     public void addPrinter(int id, int printerType, String printerName, String manufacturer, int maxX, int maxY, int maxZ, int maxColors) {

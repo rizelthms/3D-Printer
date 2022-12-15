@@ -11,6 +11,10 @@ public class PrintTaskManager {
 
     PrinterFacade facade;
 
+    public PrintTaskManager(PrinterFacade facade) {
+        this.facade = facade;
+    }
+
     public Print findPrint(String printName) {
         return facade.findPrint(printName);
     }

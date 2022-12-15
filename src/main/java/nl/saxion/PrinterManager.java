@@ -10,7 +10,9 @@ public class PrinterManager {
 
     PrinterFacade facade;
 
-
+    public PrinterManager(PrinterFacade facade) {
+        this.facade = facade;
+    }
 
     public void addPrinter(int id, int printerType, String printerName, String manufacturer, int maxX, int maxY, int maxZ, int maxColors) {
         facade.addPrinter(id, printerType, printerName, manufacturer, maxX, maxY, maxZ, maxColors);
