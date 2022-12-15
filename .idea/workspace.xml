@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="">
+    <list default="true" id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="First commit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrintTaskManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/facade/PrinterFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,8 +183,19 @@
       <workItem from="1668765866129" duration="1145000" />
       <workItem from="1670937013201" duration="129000" />
       <workItem from="1670937158167" duration="28000" />
-      <workItem from="1670937627316" duration="10000" />
+      <workItem from="1670937627316" duration="661000" />
+      <workItem from="1670938300378" duration="1267000" />
+      <workItem from="1671104235374" duration="5967000" />
+      <workItem from="1671119147339" duration="776000" />
     </task>
+    <task id="LOCAL-00001" summary="First commit">
+      <created>1670937648404</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1670937648404</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,5 +211,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="First commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
   </component>
 </project>
