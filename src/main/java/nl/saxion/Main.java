@@ -16,12 +16,12 @@ import java.util.*;
 
 public class Main {
 
-    PrinterFacade facade;
-    PrinterManager manager;
+    PrinterFacade facade = new PrinterFacade();
+    PrinterManager manager = new PrinterManager();
 
-    PrintTaskManager taskManager;
+    PrintTaskManager taskManager = new PrintTaskManager();
 
-    Menu menu;
+    Menu menu = new Menu();
     Scanner scanner = new Scanner(System.in);
 
     private String printStrategy = "Less Spool Changes";
@@ -33,10 +33,6 @@ public class Main {
 
     //Read data and loop menu options
     public void run(String[] args) {
-        facade = new PrinterFacade();
-        manager = new PrinterManager(facade);
-        taskManager = new PrintTaskManager(facade);
-        menu = new Menu();
 
         if(args.length > 0) {
             readPrintsFromFile(args[0]);

@@ -9,11 +9,11 @@ import java.util.List;
 
 public class PrintTaskManager {
 
-    PrinterFacade facade;
+    PrinterFacade facade = new PrinterFacade();
 
-    public PrintTaskManager(PrinterFacade facade) {
-        this.facade = facade;
-    }
+//    public PrintTaskManager(PrinterFacade facade) {
+//        this.facade = facade;
+//    }
 
     public Print findPrint(String printName) {
         return facade.findPrint(printName);

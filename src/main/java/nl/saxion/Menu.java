@@ -11,6 +11,8 @@ public class Menu {
 
     //Call this method from the Main class
     public void menuSwitch(){
+
+        main = new Main();
         int choice = 1; //Why 1?
 
         //Refactor this code with switch statement
