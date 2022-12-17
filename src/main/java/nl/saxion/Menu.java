@@ -3,45 +3,63 @@ package nl.saxion;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/*
+ * This class contains the menu and menu options for a system.
+ * It allows the user to choose different actions to perform, such as adding new print tasks or viewing pending print tasks.
+ */
+
+
 public class Menu {
-
     Scanner scanner = new Scanner(System.in);
-
     Main main;
 
-    //Call this method from the Main class
+    // Call this method from the Main class to display the menu and handle user input.
     public void menuSwitch(){
 
         main = new Main();
-        int choice = 1; //Why 1?
+        int choice = 1; //Why 1?  1 because 0 is for exit function so if we set choice to 0 when created we will never enter the while loop.
 
         //Refactor this code with switch statement
-
         while (choice > 0 && choice < 10) {
             printMenu();
-            choice = menuChoice(9);
+            choice = menuChoice(9); // add a while loop that as long as choice are not between 0 and 10 choice = menuChoice(9) is not optimized because the default case actually check if choice is ok. If no case are equals to choice then we do something. no unnecessary calculation
             System.out.println("----------------------------------->>");
-            if (choice == 1) {
-                main.addNewPrintTask();
-            } else if (choice == 2) {
-                main.registerPrintCompletion();
-            } else if (choice == 3) {
-                main.registerPrinterFailure();
-            } else if (choice == 4) {
-                main.changePrintStrategy();
-            } else if (choice == 5) {
-                main.startPrintQueue();
-            } else if (choice == 6) {
-                main.showPrints();
-            } else if (choice == 7) {
-                main.showPrinters();
-            } else if (choice == 8) {
-                main.showSpools();
-            } else if (choice == 9) {
-                main.showPendingPrintTasks();
+            switch(choice) { // switch refactor is better than a lot of if else if because if else check all the conditions, switch just goes to the case which are the correct value and i add a default if choice are not in the current choice.
+                case 1:
+                    main.addNewPrintTask();
+                    break;
+                case 2:
+                    main.registerPrintCompletion();
+                    break;
+                case 3:
+                    main.registerPrinterFailure();
+                    break;
+                case 4:
+                    main.changePrintStrategy();
+                    break;
+                case 5:
+                    main.startPrintQueue();
+                    break;
+                case 6:
+                    main.showPrints();
+                    break;
+                case 7:
+                    main.showPrinters();
+                    break;
+                case 8:
+                    main.showSpools();
+                    break;
+                case 9:
+                    main.showPendingPrintTasks();
+                    break;
+                case 0:
+                    exit();
+                    break;
+                default:
+                    System.out.println("no existing orders"); // in the menuchoice we make a nextline which will recover anything not only a int between 0 and 9 so we restart menuswitch until we have a correct value.
+                    menuSwitch();
             }
         }
-        exit();
     }
 
     public void printMenu() {
@@ -58,14 +76,18 @@ public class Menu {
         System.out.println("- 0) Exit");
     }
 
+    // Prompt the user to choose an option from the menu and return their selection.
+// max: the highest valid menu option (used to validate user input).
     public int menuChoice(int max) {
+        // Read an integer from the user and return it.
+// If the user enters invalid input (e.g. a non-integer value), display an error message and repeat the prompt until valid input is received.
         int choice = -1;
         while (choice < 0 || choice > max) {
             System.out.print("- Choose an option: ");
             try {
                 choice = scanner.nextInt();
             } catch (InputMismatchException e) {
-                //try again after consuming the current line
+                // Consume the current line and try again
                 System.out.println("- Error: Invalid input");
                 scanner.nextLine();
             }
@@ -88,6 +110,8 @@ public class Menu {
 //        return input;
 //    }
 
+
+    // Terminate the program.
     private void exit() {
         System.exit(0);
     }
