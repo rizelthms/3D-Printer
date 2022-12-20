@@ -2,47 +2,63 @@ package nl.saxion;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import nl.saxion.Models.*;
 
 /*
  * This class contains the menu and menu options for a system.
  * It allows the user to choose different actions to perform, such as adding new print tasks or viewing pending print tasks.
  */
-
-
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     Main main;
-
     // Call this method from the Main class to display the menu and handle user input.
     public void menuSwitch(){
-
         main = new Main();
         int choice = 1; //Why 1?  1 because 0 is for exit function so if we set choice to 0 when created we will never enter the while loop.
-
         //Refactor this code with switch statement
         while (choice > 0 && choice < 10) {
             printMenu();
             choice = menuChoice(9); // add a while loop that as long as choice are not between 0 and 10 choice = menuChoice(9) is not optimized because the default case actually check if choice is ok. If no case are equals to choice then we do something. no unnecessary calculation
+            MainMenuOptions chosenOption = MainMenuOptions.values()[choice];
             System.out.println("----------------------------------->>");
-            switch (choice) { // switch refactor is better than a lot of if else if because if else check all the conditions, switch just goes to the case which are the correct value and i add a default if choice are not in the current choice.
-                case 1 -> main.addNewPrintTask();
-                case 2 -> main.registerPrintCompletion();
-                case 3 -> main.registerPrinterFailure();
-                case 4 -> main.changePrintStrategy();
-                case 5 -> main.startPrintQueue();
-                case 6 -> main.showPrints();
-                case 7 -> main.showPrinters();
-                case 8 -> main.showSpools();
-                case 9 -> main.showPendingPrintTasks();
-                case 0 -> exit();
-                default -> {
+
+            switch(chosenOption) { // switch refactor is better than a lot of if else if because if else check all the conditions, switch just goes to the case which are the correct value and i add a default if choice are not in the current choice.
+                case AddNewPrintTask:
+                    main.addNewPrintTask();
+                    break;
+                case RegisterPrintCompletion:
+                    main.registerPrintCompletion();
+                    break;
+                case RegisterPrinterFailure:
+                    main.registerPrinterFailure();
+                    break;
+                case ChangePrintStrategy:
+                    main.changePrintStrategy();
+                    break;
+                case StartPrintQueue:
+                    main.startPrintQueue();
+                    break;
+                case ShowPrints:
+                    main.showPrints();
+                    break;
+                case ShowPrinters:
+                    main.showPrinters();
+                    break;
+                case ShowSpools:
+                    main.showSpools();
+                    break;
+                case ShowPendingPrintTasks:
+                    main.showPendingPrintTasks();
+                    break;
+                case InvalidOption:
+                    exit();
+                    break;
+                default:
                     System.out.println("no existing orders"); // in the menuchoice we make a nextline which will recover anything not only a int between 0 and 9 so we restart menuswitch until we have a correct value.
                     menuSwitch();
-                }
             }
         }
     }
-
     public void printMenu() {
         System.out.println("<<------------- Menu ----------------");
         System.out.println("- 1) Add new Print Task");
