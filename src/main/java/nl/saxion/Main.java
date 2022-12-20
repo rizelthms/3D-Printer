@@ -135,18 +135,13 @@ public class Main {
         System.out.println("-------------------------------------->");
         FilamentType type;
         switch (ftype) {
-            case 1:
-                type = FilamentType.PLA;
-                break;
-            case 2:
-                type = FilamentType.PETG;
-                break;
-            case 3:
-                type = FilamentType.ABS;
-                break;
-            default:
+            case 1 -> type = FilamentType.PLA;
+            case 2 -> type = FilamentType.PETG;
+            case 3 -> type = FilamentType.ABS;
+            default -> {
                 System.out.println("- Not a valid filamentType, bailing out");
                 return;
+            }
         }
         var spools = manager.getSpools();
         System.out.println("<---------- Colors ----------");
@@ -237,9 +232,9 @@ public class Main {
                 //int filamentLength = ((Long) print.get("filamentLength")).intValue();
                 JSONArray fLength = (JSONArray) print.get("filamentLength");
                 int printTime = ((Long) print.get("printTime")).intValue();
-                ArrayList<Double> filamentLength = new ArrayList();
-                for(int i = 0; i < fLength.size(); i++) {
-                    filamentLength.add(((Double) fLength.get(i)));
+                ArrayList<Double> filamentLength = new ArrayList<>();
+                for (Object o : fLength) {
+                    filamentLength.add(((Double) o));
                 }
                 //manager class
                 taskManager.addPrint(name, height, width, length, filamentLength, printTime);
@@ -298,18 +293,13 @@ public class Main {
                 double length = (Double) spool.get("length");
                 FilamentType type;
                 switch (filamentType) {
-                    case "PLA":
-                        type = FilamentType.PLA;
-                        break;
-                    case "PETG":
-                        type = FilamentType.PETG;
-                        break;
-                    case "ABS":
-                        type = FilamentType.ABS;
-                        break;
-                    default:
+                    case "PLA" -> type = FilamentType.PLA;
+                    case "PETG" -> type = FilamentType.PETG;
+                    case "ABS" -> type = FilamentType.ABS;
+                    default -> {
                         System.out.println("- Not a valid filamentType, bailing out");
                         return;
+                    }
                 }
                 manager.addSpool(new Spool(id, color, type, length));
             }
@@ -327,8 +317,7 @@ public class Main {
     }
 
     public int numberInput() {
-        int input = scanner.nextInt();
-        return input;
+        return scanner.nextInt();
     }
 
     public int numberInput(int min, int max) {
