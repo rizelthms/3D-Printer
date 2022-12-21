@@ -22,40 +22,21 @@ public class Menu {
             MainMenuOptions chosenOption = MainMenuOptions.values()[choice];
             System.out.println("----------------------------------->>");
 
-            switch(chosenOption) { // switch refactor is better than a lot of if else if because if else check all the conditions, switch just goes to the case which are the correct value and i add a default if choice are not in the current choice.
-                case AddNewPrintTask:
-                    main.addNewPrintTask();
-                    break;
-                case RegisterPrintCompletion:
-                    main.registerPrintCompletion();
-                    break;
-                case RegisterPrinterFailure:
-                    main.registerPrinterFailure();
-                    break;
-                case ChangePrintStrategy:
-                    main.changePrintStrategy();
-                    break;
-                case StartPrintQueue:
-                    main.startPrintQueue();
-                    break;
-                case ShowPrints:
-                    main.showPrints();
-                    break;
-                case ShowPrinters:
-                    main.showPrinters();
-                    break;
-                case ShowSpools:
-                    main.showSpools();
-                    break;
-                case ShowPendingPrintTasks:
-                    main.showPendingPrintTasks();
-                    break;
-                case InvalidOption:
-                    exit();
-                    break;
-                default:
+            switch (chosenOption) { // switch refactor is better than a lot of if else if because if else check all the conditions, switch just goes to the case which are the correct value and i add a default if choice are not in the current choice.
+                case AddNewPrintTask -> main.addNewPrintTask();
+                case RegisterPrintCompletion -> main.registerPrintCompletion();
+                case RegisterPrinterFailure -> main.registerPrinterFailure();
+                case ChangePrintStrategy -> main.changePrintStrategy();
+                case StartPrintQueue -> main.startPrintQueue();
+                case ShowPrints -> main.showPrints();
+                case ShowPrinters -> main.showPrinters();
+                case ShowSpools -> main.showSpools();
+                case ShowPendingPrintTasks -> main.showPendingPrintTasks();
+                case InvalidOption -> exit();
+                default -> {
                     System.out.println("no existing orders"); // in the menuchoice we make a nextline which will recover anything not only a int between 0 and 9 so we restart menuswitch until we have a correct value.
                     menuSwitch();
+                }
             }
         }
     }

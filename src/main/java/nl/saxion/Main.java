@@ -6,34 +6,28 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
-
 public class Main {
-
     PrinterFacade facade = new PrinterFacade();
     PrinterManager manager = new PrinterManager();
-
     PrintTaskManager taskManager = new PrintTaskManager();
-
     Menu menu = new Menu();
     Scanner scanner = new Scanner(System.in);
 
     private String printStrategy = "Less Spool Changes";
 
-    //Run run() method
+    // Run run() method
     public static void main(String[] args) {
         new Main().run(args);
     }
 
-    //Read data and loop menu options
+    // Read data and loop menu options
     public void run(String[] args) {
-
         if(args.length > 0) {
             readPrintsFromFile(args[0]);
             readSpoolsFromFile(args[1]);
@@ -45,21 +39,19 @@ public class Main {
         }
 
         menu.menuSwitch();
-
     }
 
-    //Start printer queue
+    // Start printer queue
     public void startPrintQueue() {
         System.out.println("<<---------- Starting Print Queue ---------->");
         taskManager.startInitialQueue();
         System.out.println("<----------------------------------->>");
     }
 
-    //Exit (does nothing)
+    // Exit (does nothing)
     private void exit() {
 
     }
-
     // This method only changes the name but does not actually work.
     // It exists to demonstrate the output.
     // in the future strategy might be added.
@@ -77,7 +69,6 @@ public class Main {
         }
         System.out.println("<----------------------------------->>");
     }
-
     // TODO: This should be based on which printer is finished printing.
     public void registerPrintCompletion() {
         ArrayList<Printer> printers = manager.getPrinters();
@@ -93,7 +84,6 @@ public class Main {
         System.out.println("<----------------------------------->>");
         manager.registerCompletion(printerId);
     }
-
     public void registerPrinterFailure() {
         ArrayList<Printer> printers = manager.getPrinters();
         System.out.println("<<---------- Currently Running Printers ---------->");
@@ -105,11 +95,9 @@ public class Main {
         }
         System.out.print("- Printer ID that failed: ");
         int printerId = numberInput(1, printers.size());
-
         manager.registerPrinterFailure(printerId);
         System.out.println("<----------------------------------->>");
     }
-
     public void addNewPrintTask() {
         List<String> colors = new ArrayList<>();
         var prints = taskManager.getPrints();
@@ -120,7 +108,6 @@ public class Main {
             System.out.println("- " + counter + ": " + p.getName());
             counter++;
         }
-
         System.out.print("- Print number: ");
         int printNumber = numberInput(1, prints.size());
         System.out.println("-------------------------------------->");
@@ -164,11 +151,9 @@ public class Main {
             colors.add(availableColors.get(colorChoice-1));
         }
         System.out.println("-------------------------------------->");
-
         taskManager.addPrintTask(printName, colors, type);
         System.out.println("<---------------------------->>");
     }
-
     public void showPrints() {
         var prints = taskManager.getPrints();
         System.out.println("<<---------- Available prints ---------->");
@@ -177,7 +162,6 @@ public class Main {
         }
         System.out.println("<-------------------------------------->>");
     }
-
     public void showSpools() {
         var spools = manager.getSpools();
         System.out.println("<<---------- Spools ---------->");
@@ -186,7 +170,6 @@ public class Main {
         }
         System.out.println("<---------------------------->>");
     }
-
     public void showPrinters() {
         var printers = manager.getPrinters();
         System.out.println("<<--------- Available printers --------->");
@@ -201,7 +184,6 @@ public class Main {
         }
         System.out.println("<-------------------------------------->>");
     }
-
     public void showPendingPrintTasks() {
         ArrayList<PrintTask> printTasks = taskManager.getPendingPrintTasks();
         System.out.println("<<--------- Pending Print Tasks --------->");
@@ -210,12 +192,14 @@ public class Main {
         }
         System.out.println("<-------------------------------------->>");
     }
-
     private void readPrintsFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
         if(filename.length() == 0) {
             filename = "prints.json";
         }
+
+        System.out.println(Main.class.getResource("Main.class"));
+
         URL printResource = getClass().getResource("/" + filename);
         if (printResource == null) {
             System.err.println("Warning: Could not find prints.json file");
@@ -223,6 +207,7 @@ public class Main {
         }
         try (FileReader reader = new FileReader(URLDecoder.decode(printResource.getPath(), StandardCharsets.UTF_8))) {
             JSONArray prints = (JSONArray) jsonParser.parse(reader);
+            System.out.println(prints);
             for (Object p : prints) {
                 JSONObject print = (JSONObject) p;
                 String name = (String) print.get("name");
@@ -233,8 +218,8 @@ public class Main {
                 JSONArray fLength = (JSONArray) print.get("filamentLength");
                 int printTime = ((Long) print.get("printTime")).intValue();
                 ArrayList<Double> filamentLength = new ArrayList<>();
-                for (Object o : fLength) {
-                    filamentLength.add(((Double) o));
+                for(int i = 0; i < fLength.size(); i++) {
+                    filamentLength.add(((Double) fLength.get(i)));
                 }
                 //manager class
                 taskManager.addPrint(name, height, width, length, filamentLength, printTime);
@@ -243,7 +228,6 @@ public class Main {
             e.printStackTrace();
         }
     }
-
     private void readPrintersFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
         if(filename.length() == 0) {
@@ -272,7 +256,6 @@ public class Main {
             e.printStackTrace();
         }
     }
-
     private void readSpoolsFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
         if(filename.length() == 0) {
@@ -307,7 +290,6 @@ public class Main {
             e.printStackTrace();
         }
     }
-
     public String stringInput() {
         String input = null;
         while(input == null || input.length() == 0){
@@ -315,11 +297,9 @@ public class Main {
         }
         return input;
     }
-
     public int numberInput() {
         return scanner.nextInt();
     }
-
     public int numberInput(int min, int max) {
         int input = numberInput();
         while (input < min || input > max) {
