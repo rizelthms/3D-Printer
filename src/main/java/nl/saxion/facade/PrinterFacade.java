@@ -31,6 +31,8 @@ public class PrinterFacade {
 
     //PrinterManager methods
     public void addPrinter(int id, int printerType, String printerName, String manufacturer, int maxX, int maxY, int maxZ, int maxColors) {
+        // ----- Replace with factory.
+
         if (printerType == 1) {
             StandardFDM printer = new StandardFDM(id, printerName, manufacturer, maxX, maxY, maxZ);
             printers.add(printer);
