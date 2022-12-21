@@ -14,6 +14,7 @@ import java.util.*;
 
 public class Inputs {
     static Scanner scanner = new Scanner(System.in);
+
     public static void showPrints() {
         var prints = taskManager.getPrints();
         System.out.println("<<---------- Available prints ---------->");
@@ -22,6 +23,7 @@ public class Inputs {
         }
         System.out.println("<-------------------------------------->>");
     }
+
     public void showSpools() {
         var spools = manager.getSpools();
         System.out.println("<<---------- Spools ---------->");
@@ -30,6 +32,7 @@ public class Inputs {
         }
         System.out.println("<---------------------------->>");
     }
+
     public void showPrinters() {
         var printers = manager.getPrinters();
         System.out.println("<<--------- Available printers --------->");
@@ -44,6 +47,7 @@ public class Inputs {
         }
         System.out.println("<-------------------------------------->>");
     }
+
     public void showPendingPrintTasks() {
         ArrayList<PrintTask> printTasks = taskManager.getPendingPrintTasks();
         System.out.println("<<--------- Pending Print Tasks --------->");
@@ -53,13 +57,14 @@ public class Inputs {
         System.out.println("<-------------------------------------->>");
     }
 
-    private ArrayList<Print> loadPrintsFromFile(String filename) {
+    public static ArrayList<Print> loadPrintsFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
         ArrayList<Print> printObjs = new ArrayList<Print>();
 
         if(filename.length() == 0) {
             filename = "prints.json";
         }
+
         URL printResource = getClass().getResource("/" + filename);
         if (printResource == null) {
             System.err.println("Warning: Could not find prints.json file");
@@ -93,7 +98,7 @@ public class Inputs {
         return printObjs;
     }
 
-    private ArrayList<Printer> loadPrintersFromFile(String filename) {
+    public static ArrayList<Printer> loadPrintersFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
         ArrayList<Printer> printerObjs = new ArrayList<Printer>();
 
@@ -130,7 +135,7 @@ public class Inputs {
         return printerObjs;
     }
 
-    private ArrayList<Spool> loadSpoolsFromFile(String filename) {
+    public static ArrayList<Spool> loadSpoolsFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
         ArrayList<Spool> spoolObjs = new ArrayList<Spool>();
 
@@ -175,13 +180,14 @@ public class Inputs {
      *
      * @return The line read by scanner.
      */
-    public String stringInput() {
+    public static String stringInput() {
         String input = null;
         while(input == null || input.length() == 0){
             input = scanner.nextLine();
         }
         return input;
     }
+
     /**
      * Wait for and grab the latest number input from stdin.
      *
@@ -190,6 +196,7 @@ public class Inputs {
     public static int numberInput() {
         return scanner.nextInt();
     }
+
     /**
      * Loop to request a new number from stdin if the number isn't within the
      * specified bounds.
