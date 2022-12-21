@@ -19,39 +19,33 @@ public class Main {
     PrintTaskManager taskManager = new PrintTaskManager();
     Menu menu = new Menu();
     Scanner scanner = new Scanner(System.in);
-
     private String printStrategy = "Less Spool Changes";
-
     // Run run() method
     public static void main(String[] args) {
         new Main().run(args);
     }
-
     // Read data and loop menu options
     public void run(String[] args) {
         if(args.length > 0) {
-            readPrintsFromFile(args[0]);
-            readSpoolsFromFile(args[1]);
-            readPrintersFromFile(args[2]);
+            loadPrintsFromFile(args[0]);
+            loadSpoolsFromFile(args[1]);
+            loadPrintersFromFile(args[2]);
         } else {
-            readPrintsFromFile("");
-            readSpoolsFromFile("");
-            readPrintersFromFile("");
+            loadPrintsFromFile("");
+            loadSpoolsFromFile("");
+            loadPrintersFromFile("");
         }
 
         menu.menuSwitch();
     }
-
     // Start printer queue
     public void startPrintQueue() {
         System.out.println("<<---------- Starting Print Queue ---------->");
         taskManager.startInitialQueue();
         System.out.println("<----------------------------------->>");
     }
-
     // Exit (does nothing)
     private void exit() {
-
     }
     // This method only changes the name but does not actually work.
     // It exists to demonstrate the output.
@@ -193,14 +187,13 @@ public class Main {
         }
         System.out.println("<-------------------------------------->>");
     }
-    private void readPrintsFromFile(String filename) {
+
+    private void loadPrintsFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
         if(filename.length() == 0) {
             filename = "prints.json";
         }
-
         System.out.println(Main.class.getResource("Main.class"));
-
         URL printResource = getClass().getResource("/" + filename);
         if (printResource == null) {
             System.err.println("Warning: Could not find prints.json file");
@@ -229,7 +222,8 @@ public class Main {
             e.printStackTrace();
         }
     }
-    private void readPrintersFromFile(String filename) {
+
+    private void loadPrintersFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
         if(filename.length() == 0) {
             filename = "printers.json";
@@ -257,7 +251,8 @@ public class Main {
             e.printStackTrace();
         }
     }
-    private void readSpoolsFromFile(String filename) {
+
+    private void loadSpoolsFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
         if(filename.length() == 0) {
             filename = "spools.json";
