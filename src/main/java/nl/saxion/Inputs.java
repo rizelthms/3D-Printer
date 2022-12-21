@@ -1,10 +1,10 @@
 package nl.saxion;
 
+import nl.saxion.Models.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -14,7 +14,6 @@ import java.util.*;
 
 public class Inputs {
     static Scanner scanner = new Scanner(System.in);
-
     public static void showPrints() {
         var prints = taskManager.getPrints();
         System.out.println("<<---------- Available prints ---------->");
@@ -23,7 +22,6 @@ public class Inputs {
         }
         System.out.println("<-------------------------------------->>");
     }
-
     public void showSpools() {
         var spools = manager.getSpools();
         System.out.println("<<---------- Spools ---------->");
@@ -32,7 +30,6 @@ public class Inputs {
         }
         System.out.println("<---------------------------->>");
     }
-
     public void showPrinters() {
         var printers = manager.getPrinters();
         System.out.println("<<--------- Available printers --------->");
@@ -47,7 +44,6 @@ public class Inputs {
         }
         System.out.println("<-------------------------------------->>");
     }
-
     public void showPendingPrintTasks() {
         ArrayList<PrintTask> printTasks = taskManager.getPendingPrintTasks();
         System.out.println("<<--------- Pending Print Tasks --------->");
@@ -57,12 +53,13 @@ public class Inputs {
         System.out.println("<-------------------------------------->>");
     }
 
-    private void readPrintsFromFile(String filename) {
+    private ArrayList<Print> loadPrintsFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
+        ArrayList<Print> printObjs = new ArrayList<Print>();
+
         if(filename.length() == 0) {
             filename = "prints.json";
         }
-
         URL printResource = getClass().getResource("/" + filename);
         if (printResource == null) {
             System.err.println("Warning: Could not find prints.json file");
@@ -84,16 +81,22 @@ public class Inputs {
                 for(int i = 0; i < fLength.size(); i++) {
                     filamentLength.add(((Double) fLength.get(i)));
                 }
-                //manager class
-                taskManager.addPrint(name, height, width, length, filamentLength, printTime);
+
+                printObjs.add(
+                        new Print(name, height, width, length, filamentLength, printTime)
+                );
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+
+        return printObjs;
     }
 
-    private void readPrintersFromFile(String filename) {
+    private ArrayList<Printer> loadPrintersFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
+        ArrayList<Printer> printerObjs = new ArrayList<Printer>();
+
         if(filename.length() == 0) {
             filename = "printers.json";
         }
@@ -114,15 +117,23 @@ public class Inputs {
                 int maxY = ((Long) printer.get("maxY")).intValue();
                 int maxZ = ((Long) printer.get("maxZ")).intValue();
                 int maxColors = ((Long) printer.get("maxColors")).intValue();
-                manager.addPrinter(id, type, name, manufacturer, maxX, maxY, maxZ, maxColors);
+
+                // ----- Use Factory here for printer subtypes.
+                printerObjs.add(
+                        new Printer(id, type, name, manufacturer, maxX, maxY, maxZ, maxColors)
+                );
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+
+        return printerObjs;
     }
 
-    private void readSpoolsFromFile(String filename) {
+    private ArrayList<Spool> loadSpoolsFromFile(String filename) {
         JSONParser jsonParser = new JSONParser();
+        ArrayList<Spool> spoolObjs = new ArrayList<Spool>();
+
         if(filename.length() == 0) {
             filename = "spools.json";
         }
@@ -149,11 +160,14 @@ public class Inputs {
                         return;
                     }
                 }
-                manager.addSpool(new Spool(id, color, type, length));
+
+                spoolObjs.add(new Spool(id, color, type, length));
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+
+        return spoolObjs;
     }
 
     /**
@@ -168,7 +182,6 @@ public class Inputs {
         }
         return input;
     }
-
     /**
      * Wait for and grab the latest number input from stdin.
      *
@@ -177,7 +190,6 @@ public class Inputs {
     public static int numberInput() {
         return scanner.nextInt();
     }
-
     /**
      * Loop to request a new number from stdin if the number isn't within the
      * specified bounds.
