@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="Removed unused lines + used the Display class">
+    <list default="true" id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="PrinterManagers methods devided in two classes. PrinterFacade is added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Models/MainMenuOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Models/MainMenuOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrintTaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrintTaskManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrinterManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrinterManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrintTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrintTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,42 +212,7 @@
       <option name="project" value="LOCAL" />
       <updated>1671120356827</updated>
     </task>
-    <task id="LOCAL-00004" summary="Display class to handle output to standard out">
-      <created>1671802576209</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1671802576209</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Fixed read + use new factory + remove prints">
-      <created>1671803080474</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1671803080474</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Only reference facade, menu, and inputs from main">
-      <created>1671803592451</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1671803592451</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Renamed displays class">
-      <created>1671803846079</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1671803846079</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Removed unused lines + used the Display class">
-      <created>1671804053784</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1671804053784</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,11 +232,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="PrinterManagers methods devided in two classes. PrinterFacade is added" />
-    <MESSAGE value="Display class to handle output to standard out" />
-    <MESSAGE value="Fixed read + use new factory + remove prints" />
-    <MESSAGE value="Only reference facade, menu, and inputs from main" />
-    <MESSAGE value="Renamed displays class" />
-    <MESSAGE value="Removed unused lines + used the Display class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unused lines + used the Display class" />
+    <option name="LAST_COMMIT_MESSAGE" value="PrinterManagers methods devided in two classes. PrinterFacade is added" />
   </component>
 </project>
