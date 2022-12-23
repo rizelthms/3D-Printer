@@ -11,10 +11,13 @@ import nl.saxion.Models.*;
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     Main main;
+
     // Call this method from the Main class to display the menu and handle user input.
     public void menuSwitch(){
+
         main = new Main();
         int choice = 1; //Why 1?  1 because 0 is for exit function so if we set choice to 0 when created we will never enter the while loop.
+
         //Refactor this code with switch statement
         while (choice > 0 && choice < 10) {
             printMenu();
@@ -28,10 +31,10 @@ public class Menu {
                 case RegisterPrinterFailure -> main.registerPrinterFailure();
                 case ChangePrintStrategy -> main.changePrintStrategy();
                 case StartPrintQueue -> main.startPrintQueue();
-                case ShowPrints -> main.showPrints();
-                case ShowPrinters -> main.showPrinters();
-                case ShowSpools -> main.showSpools();
-                case ShowPendingPrintTasks -> main.showPendingPrintTasks();
+                case ShowPrints -> Display.showPrints();
+                case ShowPrinters -> Display.showPrinters();
+                case ShowSpools -> Display.showSpools();
+                case ShowPendingPrintTasks -> Display.showPendingPrintTasks();
                 case InvalidOption -> exit();
                 default -> {
                     System.out.println("no existing orders"); // in the menuchoice we make a nextline which will recover anything not only a int between 0 and 9 so we restart menuswitch until we have a correct value.
@@ -40,6 +43,7 @@ public class Menu {
             }
         }
     }
+
     public void printMenu() {
         System.out.println("<<------------- Menu ----------------");
         System.out.println("- 1) Add new Print Task");
@@ -55,10 +59,10 @@ public class Menu {
     }
 
     // Prompt the user to choose an option from the menu and return their selection.
-// max: the highest valid menu option (used to validate user input).
+    // max: the highest valid menu option (used to validate user input).
     public int menuChoice(int max) {
         // Read an integer from the user and return it.
-// If the user enters invalid input (e.g. a non-integer value), display an error message and repeat the prompt until valid input is received.
+        // If the user enters invalid input (e.g. a non-integer value), display an error message and repeat the prompt until valid input is received.
         int choice = -1;
         while (choice < 0 || choice > max) {
             System.out.print("- Choose an option: ");
@@ -72,22 +76,6 @@ public class Menu {
         }
         return choice;
     }
-
-//    //Unused method
-//    public int numberInput() {
-//        int input = scanner.nextInt();
-//        return input;
-//    }
-//
-//    //Unused method
-//    public int numberInput(int min, int max) {
-//        int input = numberInput();
-//        while (input < min || input > max) {
-//            input = numberInput();
-//        }
-//        return input;
-//    }
-
 
     // Terminate the program.
     private void exit() {
