@@ -1,4 +1,8 @@
 package nl.saxion.Models;
 
-public class PrinterType {
+public enum PrinterType {
+    InvalidType,
+    StandardFDM,
+    HousedPrinter,
+    MultiColor;
 }
