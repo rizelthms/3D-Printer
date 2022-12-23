@@ -5,15 +5,9 @@ import nl.saxion.facade.PrinterFacade;
 import java.util.*;
 
 public class Main {
-
     PrinterFacade facade = new PrinterFacade();
-    PrinterManager manager = new PrinterManager();
-
-    PrintTaskManager taskManager = new PrintTaskManager();
-
     Menu menu = new Menu();
     Scanner scanner = new Scanner(System.in);
-
     private String printStrategy = "Less Spool Changes";
 
     // Run run() method
@@ -39,7 +33,7 @@ public class Main {
     // Start printer queue
     public void startPrintQueue() {
         System.out.println("<<---------- Starting Print Queue ---------->");
-        taskManager.startInitialQueue();
+        facade.startInitialQueue();
         System.out.println("<----------------------------------->>");
     }
 
@@ -68,10 +62,10 @@ public class Main {
 
     // TODO: This should be based on which printer is finished printing.
     public void registerPrintCompletion() {
-        ArrayList<Printer> printers = manager.getPrinters();
+        ArrayList<Printer> printers = facade.getPrinters();
         System.out.println("<<---------- Currently Running Printers ---------->");
         for(Printer p: printers) {
-            PrintTask printerCurrentTask= taskManager.getPrinterCurrentTask(p);
+            PrintTask printerCurrentTask= facade.getPrinterCurrentTask(p);
             if(printerCurrentTask != null) {
                 System.out.println("- " + p.getId() + ": " +p.getName() + " - " + printerCurrentTask);
             }
@@ -79,14 +73,14 @@ public class Main {
         System.out.print("- Printer that is done (ID): ");
         int printerId = Inputs.numberInput(-1, printers.size());
         System.out.println("<----------------------------------->>");
-        manager.registerCompletion(printerId);
+        facade.registerCompletion(printerId);
     }
 
     public void registerPrinterFailure() {
-        ArrayList<Printer> printers = manager.getPrinters();
+        ArrayList<Printer> printers = facade.getPrinters();
         System.out.println("<<---------- Currently Running Printers ---------->");
         for(Printer p: printers) {
-            PrintTask printerCurrentTask= taskManager.getPrinterCurrentTask(p);
+            PrintTask printerCurrentTask= facade.getPrinterCurrentTask(p);
             if(printerCurrentTask != null) {
                 System.out.println("- " + p.getId() + ": " +p.getName() + " > " + printerCurrentTask);
             }
@@ -94,13 +88,13 @@ public class Main {
         System.out.print("- Printer ID that failed: ");
         int printerId = Inputs.numberInput(1, printers.size());
 
-        manager.registerPrinterFailure(printerId);
+        facade.registerPrinterFailure(printerId);
         System.out.println("<----------------------------------->>");
     }
 
     public void addNewPrintTask() {
         List<String> colors = new ArrayList<>();
-        var prints = taskManager.getPrints();
+        var prints = facade.getPrints();
         System.out.println("<<---------- New Print Task ---------->");
         System.out.println("<---------- Available prints ----------");
         int counter = 1;
@@ -112,7 +106,7 @@ public class Main {
         System.out.print("- Print number: ");
         int printNumber = Inputs.numberInput(1, prints.size());
         System.out.println("-------------------------------------->");
-        Print print = taskManager.findPrint(printNumber - 1);
+        Print print = facade.findPrint(printNumber - 1);
         String printName = print.getName();
         System.out.println("<---------- Filament Type ----------");
         System.out.println("- 1: PLA");
@@ -131,7 +125,7 @@ public class Main {
                 return;
             }
         }
-        var spools = manager.getSpools();
+        var spools = facade.getSpools();
         System.out.println("<---------- Colors ----------");
         ArrayList<String> availableColors = new ArrayList<>();
         counter = 1;
@@ -153,49 +147,7 @@ public class Main {
         }
         System.out.println("-------------------------------------->");
 
-        taskManager.addPrintTask(printName, colors, type);
+        facade.addPrintTask(printName, colors, type);
         System.out.println("<---------------------------->>");
-    }
-
-    public void showPrints() {
-        var prints = taskManager.getPrints();
-        System.out.println("<<---------- Available prints ---------->");
-        for (var p : prints) {
-            System.out.println(p);
-        }
-        System.out.println("<-------------------------------------->>");
-    }
-
-    public void showSpools() {
-        var spools = manager.getSpools();
-        System.out.println("<<---------- Spools ---------->");
-        for (var spool : spools) {
-            System.out.println(spool);
-        }
-        System.out.println("<---------------------------->>");
-    }
-
-    public void showPrinters() {
-        var printers = manager.getPrinters();
-        System.out.println("<<--------- Available printers --------->");
-        for (var p : printers) {
-            String output = p.toString();
-            PrintTask currentTask = taskManager.getPrinterCurrentTask(p);
-            if(currentTask != null) {
-                output = output.replace("-------->", "- Current Print Task: " + currentTask + System.lineSeparator() +
-                        "-------->");
-            }
-            System.out.println(output);
-        }
-        System.out.println("<-------------------------------------->>");
-    }
-
-    public void showPendingPrintTasks() {
-        ArrayList<PrintTask> printTasks = taskManager.getPendingPrintTasks();
-        System.out.println("<<--------- Pending Print Tasks --------->");
-        for (var p : printTasks) {
-            System.out.println(p);
-        }
-        System.out.println("<-------------------------------------->>");
     }
 }
