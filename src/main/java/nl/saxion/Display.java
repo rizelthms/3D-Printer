@@ -4,7 +4,7 @@ import nl.saxion.Models.*;
 import nl.saxion.facade.PrinterFacade;
 import java.util.*;
 
-public class Displays {
+public class Display {
      static PrinterFacade facade = new PrinterFacade();
 
         public static void showPrints() {
