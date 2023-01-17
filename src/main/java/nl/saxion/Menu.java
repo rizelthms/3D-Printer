@@ -24,40 +24,21 @@ public class Menu {
             printMenu();
             choice = menuChoice(9); // add a while loop that as long as choice are not between 0 and 10 choice = menuChoice(9) is not optimized because the default case actually check if choice is ok. If no case are equals to choice then we do something. no unnecessary calculation
             System.out.println("----------------------------------->>");
-            switch(choice) { // switch refactor is better than a lot of if else if because if else check all the conditions, switch just goes to the case which are the correct value and i add a default if choice are not in the current choice.
-                case 1:
-                    main.addNewPrintTask();
-                    break;
-                case 2:
-                    main.registerPrintCompletion();
-                    break;
-                case 3:
-                    main.registerPrinterFailure();
-                    break;
-                case 4:
-                    main.changePrintStrategy();
-                    break;
-                case 5:
-                    main.startPrintQueue();
-                    break;
-                case 6:
-                    main.showPrints();
-                    break;
-                case 7:
-                    main.showPrinters();
-                    break;
-                case 8:
-                    main.showSpools();
-                    break;
-                case 9:
-                    main.showPendingPrintTasks();
-                    break;
-                case 0:
-                    exit();
-                    break;
-                default:
+            switch (choice) { // switch refactor is better than a lot of if else if because if else check all the conditions, switch just goes to the case which are the correct value and i add a default if choice are not in the current choice.
+                case 1 -> main.addNewPrintTask();
+                case 2 -> main.registerPrintCompletion();
+                case 3 -> main.registerPrinterFailure();
+                case 4 -> main.changePrintStrategy();
+                case 5 -> main.startPrintQueue();
+                case 6 -> main.showPrints();
+                case 7 -> main.showPrinters();
+                case 8 -> main.showSpools();
+                case 9 -> main.showPendingPrintTasks();
+                case 0 -> exit();
+                default -> {
                     System.out.println("no existing orders"); // in the menuchoice we make a nextline which will recover anything not only a int between 0 and 9 so we restart menuswitch until we have a correct value.
                     menuSwitch();
+                }
             }
         }
     }

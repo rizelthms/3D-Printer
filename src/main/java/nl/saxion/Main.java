@@ -15,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class Main {
+    //lskdflj
 
     PrinterFacade facade = new PrinterFacade();
     PrinterManager manager = new PrinterManager();
@@ -33,6 +34,8 @@ public class Main {
 
     //Read data and loop menu options
     public void run(String[] args) {
+
+        //Main should be pretty much empty
 
         if(args.length > 0) {
             readPrintsFromFile(args[0]);
