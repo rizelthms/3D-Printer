@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="PrinterManagers methods devided in two classes. PrinterFacade is added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrintTaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrintTaskManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrinterManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrinterManager.class" afterDir="false" />
+    <list default="true" id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="Created a new refactoring branch">
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrintTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrintTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +17,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -189,7 +186,12 @@
       <workItem from="1670937627316" duration="661000" />
       <workItem from="1670938300378" duration="1267000" />
       <workItem from="1671104235374" duration="5967000" />
-      <workItem from="1671119147339" duration="1387000" />
+      <workItem from="1671119147339" duration="1427000" />
+      <workItem from="1671120734542" duration="867000" />
+      <workItem from="1671286891302" duration="606000" />
+      <workItem from="1671528214956" duration="1655000" />
+      <workItem from="1671541244184" duration="15000" />
+      <workItem from="1673944071166" duration="396000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1670937648404</created>
@@ -212,7 +214,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671120356827</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="PrinterManagers methods devided in two classes. PrinterFacade is added">
+      <created>1671120573691</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671120573691</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Created a new refactoring branch">
+      <created>1673944346791</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673944346791</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +248,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="PrinterManagers methods devided in two classes. PrinterFacade is added" />
-    <option name="LAST_COMMIT_MESSAGE" value="PrinterManagers methods devided in two classes. PrinterFacade is added" />
+    <MESSAGE value="Created a new refactoring branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a new refactoring branch" />
   </component>
 </project>
