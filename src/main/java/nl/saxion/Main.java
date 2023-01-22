@@ -1,12 +1,11 @@
 package nl.saxion;
 
 import nl.saxion.Models.*;
-import nl.saxion.facade.PrinterFacade;
 import java.util.*;
 
 public class Main {
-    PrinterFacade facade = new PrinterFacade();
     Menu menu = new Menu();
+    PrinterManager manager = new PrinterManager();
     Scanner scanner = new Scanner(System.in);
     private String printStrategy = "Less Spool Changes";
 
@@ -17,30 +16,28 @@ public class Main {
 
     // Read data and loop menu options
     public void run(String[] args) {
-        if(args.length > 0) {
-            Inputs.loadPrintsFromFile(args[0]);
-            Inputs.loadSpoolsFromFile(args[1]);
-            Inputs.loadPrintersFromFile(args[2]);
-        } else {
-            Inputs.loadPrintsFromFile("");
-            Inputs.loadSpoolsFromFile("");
-            Inputs.loadPrintersFromFile("");
-        }
+        String printsFile = "";
+        String printersFile = "";
+        String spoolsFile = "";
 
+        if (args.length > 0) {
+            printsFile = args[0];
+            spoolsFile = args[1];
+            printersFile = args[2];
+        }
+        manager.preload(printsFile, printersFile, spoolsFile);
         menu.menuSwitch();
     }
 
     // Start printer queue
     public void startPrintQueue() {
         System.out.println("<<---------- Starting Print Queue ---------->");
-        facade.startInitialQueue();
+        manager.startInitialQueue();
         System.out.println("<----------------------------------->>");
     }
 
     // Exit (does nothing)
-    private void exit() {
-
-    }
+    private void exit() {}
 
     // This method only changes the name but does not actually work.
     // It exists to demonstrate the output.
@@ -62,10 +59,10 @@ public class Main {
 
     // TODO: This should be based on which printer is finished printing.
     public void registerPrintCompletion() {
-        ArrayList<Printer> printers = facade.getPrinters();
+        ArrayList<Printer> printers = manager.getPrinters();
         System.out.println("<<---------- Currently Running Printers ---------->");
         for(Printer p: printers) {
-            PrintTask printerCurrentTask= facade.getPrinterCurrentTask(p);
+            PrintTask printerCurrentTask= manager.getPrinterCurrentTask(p);
             if(printerCurrentTask != null) {
                 System.out.println("- " + p.getId() + ": " +p.getName() + " - " + printerCurrentTask);
             }
@@ -73,14 +70,14 @@ public class Main {
         System.out.print("- Printer that is done (ID): ");
         int printerId = Inputs.numberInput(-1, printers.size());
         System.out.println("<----------------------------------->>");
-        facade.registerCompletion(printerId);
+        manager.registerCompletion(printerId);
     }
 
     public void registerPrinterFailure() {
-        ArrayList<Printer> printers = facade.getPrinters();
+        ArrayList<Printer> printers = manager.getPrinters();
         System.out.println("<<---------- Currently Running Printers ---------->");
         for(Printer p: printers) {
-            PrintTask printerCurrentTask= facade.getPrinterCurrentTask(p);
+            PrintTask printerCurrentTask= manager.getPrinterCurrentTask(p);
             if(printerCurrentTask != null) {
                 System.out.println("- " + p.getId() + ": " +p.getName() + " > " + printerCurrentTask);
             }
@@ -88,13 +85,13 @@ public class Main {
         System.out.print("- Printer ID that failed: ");
         int printerId = Inputs.numberInput(1, printers.size());
 
-        facade.registerPrinterFailure(printerId);
+        manager.registerPrinterFailure(printerId);
         System.out.println("<----------------------------------->>");
     }
 
     public void addNewPrintTask() {
         List<String> colors = new ArrayList<>();
-        var prints = facade.getPrints();
+        var prints = manager.getPrints();
         System.out.println("<<---------- New Print Task ---------->");
         System.out.println("<---------- Available prints ----------");
         int counter = 1;
@@ -106,7 +103,7 @@ public class Main {
         System.out.print("- Print number: ");
         int printNumber = Inputs.numberInput(1, prints.size());
         System.out.println("-------------------------------------->");
-        Print print = facade.findPrint(printNumber - 1);
+        Print print = manager.findPrint(printNumber - 1);
         String printName = print.getName();
         System.out.println("<---------- Filament Type ----------");
         System.out.println("- 1: PLA");
@@ -125,7 +122,7 @@ public class Main {
                 return;
             }
         }
-        var spools = facade.getSpools();
+        var spools = manager.getSpools();
         System.out.println("<---------- Colors ----------");
         ArrayList<String> availableColors = new ArrayList<>();
         counter = 1;
@@ -147,7 +144,7 @@ public class Main {
         }
         System.out.println("-------------------------------------->");
 
-        facade.addPrintTask(printName, colors, type);
+        manager.addPrintTask(printName, colors, type);
         System.out.println("<---------------------------->>");
     }
 }
