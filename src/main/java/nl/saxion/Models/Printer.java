@@ -25,6 +25,8 @@ public abstract class Printer {
 
     public abstract boolean printFits(Print print);
 
+    public abstract boolean isValidTask(PrintTask printTask, boolean doSpoolMatch);
+
     @Override
     public String toString() {
         return  "<--------" + System.lineSeparator() +
