@@ -248,6 +248,8 @@ public class PrinterFacade {
             for(PrintTask printTask: pendingPrintTasks) {
                 if(printer.printFits(printTask.getPrint()) && getPrinterCurrentTask(printer) == null) {
                     if (printer instanceof StandardFDM && printTask.getFilamentType() != FilamentType.ABS && printTask.getColors().size() == 1) {
+                        //Use Strategy pattern here
+                        
                         Spool chosenSpool = null;
                         for (Spool spool : freeSpools) {
                             if (spool.spoolMatch(printTask.getColors().get(0), printTask.getFilamentType())) {
