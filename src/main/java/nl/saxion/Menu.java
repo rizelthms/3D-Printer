@@ -31,10 +31,10 @@ public class Menu {
                 case RegisterPrinterFailure -> main.registerPrinterFailure();
                 case ChangePrintStrategy -> main.changePrintStrategy();
                 case StartPrintQueue -> main.startPrintQueue();
-                case ShowPrints -> Display.showPrints();
-                case ShowPrinters -> Display.showPrinters();
-                case ShowSpools -> Display.showSpools();
-                case ShowPendingPrintTasks -> Display.showPendingPrintTasks();
+                case ShowPrints -> main.manager.showPrints();
+                case ShowPrinters -> main.manager.showPrinters();
+                case ShowSpools -> main.manager.showSpools();
+                case ShowPendingPrintTasks -> main.manager.showPendingPrintTasks();
                 case InvalidOption -> exit();
                 default -> {
                     System.out.println("no existing orders"); // in the menuchoice we make a nextline which will recover anything not only a int between 0 and 9 so we restart menuswitch until we have a correct value.
