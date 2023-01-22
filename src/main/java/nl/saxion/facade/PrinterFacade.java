@@ -1,14 +1,14 @@
 package nl.saxion.facade;
 
 import nl.saxion.Models.*;
-import nl.saxion.PrinterManager;
+import nl.saxion.PrinterManagerFacade;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class PrinterFacade {
-    private PrinterManager manager = new PrinterManager();
+    private PrinterManagerFacade manager = new PrinterManagerFacade();
 
     public void addPrinter(int id, int printerType, String printerName, String manufacturer, int maxX, int maxY, int maxZ, int maxColors) {
         manager.addPrinter(id, printerType, printerName, manufacturer, maxX, maxY, maxZ, maxColors);

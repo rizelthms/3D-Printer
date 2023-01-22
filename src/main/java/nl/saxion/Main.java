@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Main {
     Menu menu = new Menu();
-    PrinterManager manager = new PrinterManager();
+    PrinterManagerFacade manager = new PrinterManagerFacade();
     Scanner scanner = new Scanner(System.in);
     private String printStrategy = "Less Spool Changes";
 
