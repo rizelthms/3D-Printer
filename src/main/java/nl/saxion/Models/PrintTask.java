@@ -40,7 +40,7 @@ public class PrintTask {
                 String curColor = colors.get(i);
                 boolean spoolMatched = spool.spoolMatch(curColor, filamentType);
 
-                if (spoolMatched && !Tools.containsSpool(spools, curColor)) {
+                if (spoolMatched && !Tools.containsSpool(validSpools, curColor)) {
                     validSpools.add(spool);
                     break; // Match only one spool per color.
                 }
