@@ -105,8 +105,9 @@ public class PrinterManager {
             String output = p.toString();
             PrintTask currentTask = facade.getPrinterCurrentTask(p);
             if(currentTask != null) {
-                output = output.replace("-------->", "- Current Print Task: " + currentTask + System.lineSeparator() +
-                        "-------->");
+                output = output.replace("-------->",
+                        "- Current Print Task: " + currentTask +
+                                System.lineSeparator() + "-------->");
             }
             System.out.println(output);
         }
