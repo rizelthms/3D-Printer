@@ -1,8 +1,10 @@
 package nl.saxion;
 
+import nl.saxion.Models.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import nl.saxion.Models.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * This class contains the menu and menu options for a system.
@@ -10,35 +12,34 @@ import nl.saxion.Models.*;
  */
 public class Menu {
     Scanner scanner = new Scanner(System.in);
-    Main main;
+    PrinterManager manager = null;
+    private String printStrategy = "Less Spool Changes";
 
     // Call this method from the Main class to display the menu and handle user input.
-    public void menuSwitch(){
+    public void menuSwitch(PrinterManager printerManager) {
+        this.manager = printerManager;
+        int choice = 1;
 
-        main = new Main();
-        int choice = 1; //Why 1?  1 because 0 is for exit function so if we set choice to 0 when created we will never enter the while loop.
-
-        //Refactor this code with switch statement
         while (choice > 0 && choice < 10) {
             printMenu();
-            choice = menuChoice(9); // add a while loop that as long as choice are not between 0 and 10 choice = menuChoice(9) is not optimized because the default case actually check if choice is ok. If no case are equals to choice then we do something. no unnecessary calculation
+            choice = menuChoice(9);
             MainMenuOptions chosenOption = MainMenuOptions.values()[choice];
             System.out.println("----------------------------------->>");
 
             switch (chosenOption) { // switch refactor is better than a lot of if else if because if else check all the conditions, switch just goes to the case which are the correct value and i add a default if choice are not in the current choice.
-                case AddNewPrintTask -> main.addNewPrintTask();
-                case RegisterPrintCompletion -> main.registerPrintCompletion();
-                case RegisterPrinterFailure -> main.registerPrinterFailure();
-                case ChangePrintStrategy -> main.changePrintStrategy();
-                case StartPrintQueue -> main.startPrintQueue();
-                case ShowPrints -> main.manager.showPrints();
-                case ShowPrinters -> main.manager.showPrinters();
-                case ShowSpools -> main.manager.showSpools();
-                case ShowPendingPrintTasks -> main.manager.showPendingPrintTasks();
+                case AddNewPrintTask -> addNewPrintTask();
+                case RegisterPrintCompletion -> registerPrintCompletion();
+                case RegisterPrinterFailure -> registerPrinterFailure();
+                case ChangePrintStrategy -> changePrintStrategy();
+                case StartPrintQueue -> startPrintQueue();
+                case ShowPrints -> manager.showPrints();
+                case ShowPrinters -> manager.showPrinters();
+                case ShowSpools -> manager.showSpools();
+                case ShowPendingPrintTasks -> manager.showPendingPrintTasks();
                 case InvalidOption -> exit();
                 default -> {
                     System.out.println("no existing orders"); // in the menuchoice we make a nextline which will recover anything not only a int between 0 and 9 so we restart menuswitch until we have a correct value.
-                    menuSwitch();
+                    menuSwitch(printerManager);
                 }
             }
         }
@@ -82,4 +83,116 @@ public class Menu {
         System.exit(0);
     }
 
+
+    public void addNewPrintTask() {
+        List<String> colors = new ArrayList<>();
+        var prints = manager.getPrints();
+        System.out.println("<<---------- New Print Task ---------->");
+        System.out.println("<---------- Available prints ----------");
+        int counter = 1;
+        for (var p : prints) {
+            System.out.println("- " + counter + ": " + p.getName());
+            counter++;
+        }
+
+        System.out.print("- Print number: ");
+        int printNumber = Inputs.numberInput(1, prints.size());
+        System.out.println("-------------------------------------->");
+        Print print = manager.findPrint(printNumber - 1);
+        String printName = print.getName();
+        System.out.println("<---------- Filament Type ----------");
+        System.out.println("- 1: PLA");
+        System.out.println("- 2: PETG");
+        System.out.println("- 3: ABS");
+        System.out.print("- Filament type number: ");
+        int ftype = Inputs.numberInput(1, 3);
+        System.out.println("-------------------------------------->");
+        FilamentType type;
+        switch (ftype) {
+            case 1 -> type = FilamentType.PLA;
+            case 2 -> type = FilamentType.PETG;
+            case 3 -> type = FilamentType.ABS;
+            default -> {
+                System.out.println("- Not a valid filamentType, bailing out");
+                return;
+            }
+        }
+        var spools = manager.getSpools();
+        System.out.println("<---------- Colors ----------");
+        ArrayList<String> availableColors = new ArrayList<>();
+        counter = 1;
+        for (var spool : spools) {
+            String colorString = spool.getColor();
+            if(type == spool.getFilamentType() && !availableColors.contains(colorString)) {
+                System.out.println("- " + counter + ": " + colorString + " (" + spool.getFilamentType() + ")");
+                availableColors.add(colorString);
+                counter++;
+            }
+        }
+        System.out.print("- Color number: ");
+        int colorChoice = Inputs.numberInput(1, availableColors.size());
+        colors.add(availableColors.get(colorChoice-1));
+        for(int i = 1; i < print.getFilamentLength().size(); i++) {
+            System.out.print("- Color number: ");
+            colorChoice = Inputs.numberInput(1, availableColors.size());
+            colors.add(availableColors.get(colorChoice-1));
+        }
+        System.out.println("-------------------------------------->");
+
+        manager.addPrintTask(printName, colors, type);
+        System.out.println("<---------------------------->>");
+    }
+
+    // TODO: This should be based on which printer is finished printing.
+    public void registerPrintCompletion() {
+        ArrayList<Printer> printers = manager.getPrinters();
+        System.out.println("<<---------- Currently Running Printers ---------->");
+        manager.showPrinters();
+
+        System.out.print("- Printer that is done (ID): ");
+        int printerId = Inputs.numberInput(-1, printers.size());
+        System.out.println("<----------------------------------->>");
+
+        manager.registerCompletion(printerId);
+        System.out.println("Task for Printer: " + printerId + " marked as complete.");
+        System.out.println("<----------------------------------->>");
+    }
+
+    public void registerPrinterFailure() {
+        ArrayList<Printer> printers = manager.getPrinters();
+        System.out.println("<<---------- Currently Running Printers ---------->");
+        manager.showPrinters();
+        System.out.print("- Printer ID that failed: ");
+        int printerId = Inputs.numberInput(1, printers.size());
+        System.out.println("<----------------------------------->>");
+
+        manager.registerPrinterFailure(printerId);
+        System.out.println("Task for Printer: " + printerId + " marked as failed.");
+        System.out.println("<----------------------------------->>");
+    }
+
+    // This method only changes the name but does not actually work.
+    // It exists to demonstrate the output.
+    // in the future strategy might be added.
+    public void changePrintStrategy() {
+        System.out.println("<<---------- Change Strategy ------------->");
+        System.out.println("- Current strategy: " + printStrategy);
+        System.out.println("- 1: Less Spool Changes");
+        System.out.println("- 2: Efficient Spool Usage");
+        System.out.println("- Choose strategy: ");
+        int strategyChoice = Inputs.numberInput(1, 2);
+        if(strategyChoice == 1) {
+            printStrategy = "- Less Spool Changes";
+        } else if( strategyChoice == 2) {
+            printStrategy = "- Efficient Spool Usage";
+        }
+        System.out.println("<----------------------------------->>");
+    }
+
+    // Start printer queue
+    public void startPrintQueue() {
+        System.out.println("<<---------- Starting Print Queue ---------->");
+        manager.startInitialQueue();
+        System.out.println("<----------------------------------->>");
+    }
 }
