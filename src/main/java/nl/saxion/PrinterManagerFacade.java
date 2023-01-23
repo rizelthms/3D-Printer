@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Timer;
+import java.util.Date;
+import java.util.TimerTask;
 
 public class PrinterManagerFacade {
     private ArrayList<Printer> printers = new ArrayList<Printer>(); // TODO use interface
@@ -15,11 +17,16 @@ public class PrinterManagerFacade {
     private ArrayList<Print> prints = new ArrayList<>(); // TODO use interface
     private ArrayList<PrintTask> pendingPrintTasks = new ArrayList<>();
     private HashMap<Printer, PrintTask> runningPrintTasks = new HashMap();
+    Timer taskTimer = new Timer("taskTimer");
 
     public void preload(ArrayList<Print> prints, ArrayList<Printer> printers, ArrayList<Spool> spools) {
         this.prints.addAll(prints);
+
         this.printers.addAll(printers);
+        this.freePrinters.addAll(printers);
+
         this.spools.addAll(spools);
+        this.freeSpools.addAll(spools);
     }
 
     /**
@@ -111,7 +118,8 @@ public class PrinterManagerFacade {
 
         Printer printer = foundEntry.getKey();
         Spool[] spools = printer.getCurrentSpools();
-        for(int i=0; i<spools.length && i < task.getColors().size();i++) {
+
+        for(int i = 0; i < spools.length && i < task.getColors().size(); i++) {
             spools[i].reduceLength(task.getPrint().getFilamentLength().get(i));
         }
         selectPrintTask(printer);
@@ -160,6 +168,7 @@ public class PrinterManagerFacade {
         }
     }
 
+    // ----- TODO: REDO THIS
     public void addPrintTask(String printName, List<String> colors, FilamentType type) {
         Print print = findPrint(printName);
         if (print == null) {
@@ -190,10 +199,32 @@ public class PrinterManagerFacade {
 
     }
 
+    private void scheduleCompletion(int printTime, int printerId) {
+        long timeInMs = printTime * 1000;
+        Date delay = new Date(System.currentTimeMillis() + timeInMs);
+        TimerTask task = new TimerTask() {
+            public void run() {
+                System.out.println("\n\n<-------------------------------------->>");
+                System.out.println("Printer: " + printerId + " is done printing.");
+                registerCompletion(printerId);
+                System.out.println("Task performed on: " + new Date() + "\n" +
+                        "Thread's name: " + Thread.currentThread().getName() + "\n");
+
+                // Reprint menu prompt.
+                Menu.printMenu();
+                System.out.print("- Choose an option: ");
+            }
+        };
+
+        taskTimer.schedule(task, delay);
+    }
+
     private void loadTask(Printer printer, PrintTask printTask) {
         runningPrintTasks.put(printer, printTask);
         freePrinters.remove(printer);
         pendingPrintTasks.remove(printTask);
+
+        scheduleCompletion(printTask.getPrint().getPrintTime(), printer.getId());
 
         System.out.println("- Started task: " + printTask +
                 " on printer " + printer.getName());
@@ -264,7 +295,7 @@ public class PrinterManagerFacade {
 
     public void printError(String s) {
         System.out.println("<<---------- Error Message ---------->");
-        System.out.println("Error: "+s);
+        System.out.println("Error: " + s);
         System.out.println("<-------------------------------------->>");
     }
 

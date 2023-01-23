@@ -45,7 +45,7 @@ public class Menu {
         }
     }
 
-    public void printMenu() {
+    public static void printMenu() {
         System.out.println("<<------------- Menu ----------------");
         System.out.println("- 1) Add new Print Task");
         System.out.println("- 2) Register Printer Completion");
