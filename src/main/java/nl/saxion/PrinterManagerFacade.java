@@ -209,6 +209,7 @@ public class PrinterManagerFacade {
                 registerCompletion(printerId);
                 System.out.println("Task performed on: " + new Date() + "\n" +
                         "Thread's name: " + Thread.currentThread().getName() + "\n");
+                System.out.println("<-------------------------------------->>\n\n");
 
                 // Reprint menu prompt.
                 Menu.printMenu();
