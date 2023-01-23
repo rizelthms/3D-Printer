@@ -69,8 +69,11 @@ public class StandardFDM extends Printer {
      * @return False if the task is not a match, else true.
      */
     public boolean isValidTask(PrintTask printTask, boolean doSpoolMatch) {
-        // A spool should be set, and the print should fit.
-        if (currentSpool == null || !printFits(printTask.getPrint())) return false;
+        // If we must match with the spool, spool should be non-null.
+        if (doSpoolMatch && currentSpool == null) return false;
+
+        // The print should fit.
+        if (!printFits(printTask.getPrint())) return false;
 
         String taskColor = printTask.getColors().get(0);
         FilamentType filament = printTask.getFilamentType();

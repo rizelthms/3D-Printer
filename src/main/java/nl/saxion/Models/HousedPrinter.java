@@ -17,8 +17,11 @@ public class HousedPrinter extends StandardFDM {
         Spool spool = getCurrentSpool();
         boolean isInvalidMaxColors = printTask.getColors().size() != 1;
 
-        // A spool should be set, the print should fit, maxColors should be valid.
-        if (spool == null || !printFits(printTask.getPrint()) || isInvalidMaxColors) {
+        // If we must match with the spool, spool should be non-null.
+        if (doSpoolMatch && spool == null) return false;
+
+        // The print should fit, maxColors should be valid.
+        if (!printFits(printTask.getPrint()) || isInvalidMaxColors) {
             return false;
         }
 

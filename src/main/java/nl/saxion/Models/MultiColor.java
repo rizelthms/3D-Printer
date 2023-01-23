@@ -87,10 +87,11 @@ public class MultiColor extends StandardFDM {
      * @return False if the task is not a match, else true.
      */
     public boolean isValidTask(PrintTask printTask, boolean doSpoolMatch) {
-        // A spool should be set, the print should fit.
-        if (getCurrentSpool() == null || !printFits(printTask.getPrint())) {
-            return false;
-        }
+        // If we must match with the spool, spool should be non-null.
+        if (doSpoolMatch && getCurrentSpool() == null) return false;
+
+        // The print should fit.
+        if (!printFits(printTask.getPrint())) return false;
 
         List<String> taskColors = printTask.getColors();
         FilamentType filament = printTask.getFilamentType();
