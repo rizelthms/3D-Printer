@@ -4,8 +4,8 @@ import nl.saxion.facade.PrinterFacade;
 
 public class Main {
 
-    PrinterFacade facade = new PrinterFacade();
-    PrinterManager manager = new PrinterManager();
+    PrinterFacade facade;
+    PrinterManager manager;
     FileReader fileReader = new FileReader();
 
     public static void main(String[] args) {
@@ -26,8 +26,11 @@ public class Main {
 
         fileReader.readFile(printsFile, spoolsFile, printersFile);
 
+        facade = new PrinterFacade();
+        manager = new PrinterManager(facade);
+
         //Start Menu
-        Menu menu = new Menu(facade, manager);
+        Menu menu = new Menu(facade,manager);
         menu.start();
     }
 }

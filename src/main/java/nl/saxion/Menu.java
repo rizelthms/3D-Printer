@@ -14,8 +14,9 @@ import java.util.List;
  */
 public class Menu {
     PrinterFacade facade;
-    Scanner scanner = new Scanner(System.in);
     PrinterManager manager;
+
+    Scanner scanner = new Scanner(System.in);
     private String printStrategy = "Less Spool Changes";
 
     public Menu(PrinterFacade facade, PrinterManager manager) {
@@ -93,7 +94,6 @@ public class Menu {
     private void exit() {
         System.exit(0);
     }
-
 
     public void addNewPrintTask() {
         List<String> colors = new ArrayList<>();

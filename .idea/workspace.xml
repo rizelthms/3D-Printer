@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="PrinterManagers methods devided in two classes. PrinterFacade is added">
-      <change afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/FileReader.java" afterDir="false" />
+    <list default="true" id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="FileReader class added, Main class slightly ajusted so that the Façade can be implemented better">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrintTaskManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/HousedPrinter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/HousedPrinter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/MultiColor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/MultiColor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/Print.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/Print.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/PrintTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/PrintTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/Printer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/Printer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/StandardFDM.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Models/StandardFDM.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrinterManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrinterManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Inputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Inputs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/facade/PrinterFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/facade/PrinterFacade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/FileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/FileReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Models/PrintTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Models/PrintTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Models/Printer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Models/Printer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManagerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManagerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManagerFacade.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/facade/PrinterFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/facade/PrinterFacade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +35,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -193,7 +205,7 @@
       <workItem from="1670938300378" duration="1267000" />
       <workItem from="1671104235374" duration="5967000" />
       <workItem from="1671119147339" duration="1387000" />
-      <workItem from="1674652039824" duration="1355000" />
+      <workItem from="1674652039824" duration="9829000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1670937648404</created>
@@ -216,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671120356827</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="FileReader class added, Main class slightly ajusted so that the Façade can be implemented better">
+      <created>1674653567865</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1674653567865</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +255,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="PrinterManagers methods devided in two classes. PrinterFacade is added" />
-    <option name="LAST_COMMIT_MESSAGE" value="PrinterManagers methods devided in two classes. PrinterFacade is added" />
+    <MESSAGE value="FileReader class added, Main class slightly ajusted so that the Façade can be implemented better" />
+    <option name="LAST_COMMIT_MESSAGE" value="FileReader class added, Main class slightly ajusted so that the Façade can be implemented better" />
   </component>
 </project>
