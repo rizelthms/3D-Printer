@@ -8,14 +8,10 @@ import java.util.List;
 
 
 public class PrinterFacade {
-    private PrinterManagerFacade manager = new PrinterManagerFacade();
+    private final PrinterManagerFacade manager = new PrinterManagerFacade();
 
     public void addPrinter(int id, int printerType, String printerName, String manufacturer, int maxX, int maxY, int maxZ, int maxColors) {
         manager.addPrinter(id, printerType, printerName, manufacturer, maxX, maxY, maxZ, maxColors);
-    }
-
-    public boolean containsSpool(final List<Spool> list, final String name){
-        return manager.containsSpool(list, name);
     }
 
     public ArrayList<Printer> getPrinters() {

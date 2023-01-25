@@ -2,15 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41e25acc-7012-40ff-8e77-954cfcd2407c" name="Changes" comment="PrinterManagers methods devided in two classes. PrinterFacade is added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/FileReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrintTaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrintTaskManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrintTaskManager.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrinterManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3dprintscheduler/nl/saxion/PrinterManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Inputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Inputs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrintTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrintTaskManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManagerFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/PrinterManagerFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/facade/PrinterFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/facade/PrinterFacade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,6 +193,7 @@
       <workItem from="1670938300378" duration="1267000" />
       <workItem from="1671104235374" duration="5967000" />
       <workItem from="1671119147339" duration="1387000" />
+      <workItem from="1674652039824" duration="1355000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1670937648404</created>

@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.TimerTask;
 
 public class PrinterManagerFacade {
-    private ArrayList<Printer> printers = new ArrayList<Printer>(); // TODO use interface
-    private ArrayList<Spool> spools = new ArrayList<Spool>(); // TODO use interface
+    private ArrayList<Printer> printers = new ArrayList<>(); // TODO use interface
+    private ArrayList<Spool> spools = new ArrayList<>(); // TODO use interface
     private ArrayList<Spool> freeSpools = new ArrayList<>(); // TODO: Decide if this should be used at all.
     private ArrayList<Printer> freePrinters = new ArrayList<>();
     private ArrayList<Print> prints = new ArrayList<>(); // TODO use interface

@@ -1,6 +1,8 @@
 package nl.saxion;
 
 import nl.saxion.Models.*;
+import nl.saxion.facade.PrinterFacade;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -11,13 +13,22 @@ import java.util.List;
  * It allows the user to choose different actions to perform, such as adding new print tasks or viewing pending print tasks.
  */
 public class Menu {
+    PrinterFacade facade;
     Scanner scanner = new Scanner(System.in);
-    PrinterManager manager = null;
+    PrinterManager manager;
     private String printStrategy = "Less Spool Changes";
 
+    public Menu(PrinterFacade facade, PrinterManager manager) {
+        this.facade = facade;
+        this.manager = manager;
+    }
+
+    public void start() {
+        menuSwitch();
+    }
+
     // Call this method from the Main class to display the menu and handle user input.
-    public void menuSwitch(PrinterManager printerManager) {
-        this.manager = printerManager;
+    public void menuSwitch() {
         int choice = 1;
 
         while (choice > 0 && choice < 10) {
@@ -39,7 +50,7 @@ public class Menu {
                 case InvalidOption -> exit();
                 default -> {
                     System.out.println("no existing orders"); // in the menuchoice we make a nextline which will recover anything not only a int between 0 and 9 so we restart menuswitch until we have a correct value.
-                    menuSwitch(printerManager);
+                    menuSwitch();
                 }
             }
         }

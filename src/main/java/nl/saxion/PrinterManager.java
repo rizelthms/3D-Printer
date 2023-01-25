@@ -9,10 +9,10 @@ public class PrinterManager {
     private PrinterManagerFacade facade = new PrinterManagerFacade();
 
     public void preload(String printsFile, String printersFile, String spoolsFile) {
-        ArrayList<Print> prints = Inputs.loadPrintsFromFile(printsFile);
-        ArrayList<Spool> spools = Inputs.loadSpoolsFromFile(spoolsFile);
-        ArrayList<Printer> printers = Inputs.loadPrintersFromFile(printersFile);
-        this.facade.preload(prints, printers, spools);
+//        ArrayList<Print> prints = Inputs.loadPrintsFromFile(printsFile);
+//        ArrayList<Spool> spools = Inputs.loadSpoolsFromFile(spoolsFile);
+//        ArrayList<Printer> printers = Inputs.loadPrintersFromFile(printersFile);
+//        this.facade.preload(prints, printers, spools);
     }
 
     public void addPrinter(int id, int printerType, String printerName, String manufacturer, int maxX, int maxY, int maxZ, int maxColors) {
