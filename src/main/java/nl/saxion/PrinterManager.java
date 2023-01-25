@@ -1,18 +1,18 @@
 package nl.saxion;
 
 import nl.saxion.Models.*;
+import nl.saxion.facade.PrinterFacade;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class PrinterManager {
-    private PrinterManagerFacade facade = new PrinterManagerFacade();
+//    private PrinterManagerFacade facade = new PrinterManagerFacade();
+    PrinterFacade facade;
 
-    public void preload(String printsFile, String printersFile, String spoolsFile) {
-//        ArrayList<Print> prints = Inputs.loadPrintsFromFile(printsFile);
-//        ArrayList<Spool> spools = Inputs.loadSpoolsFromFile(spoolsFile);
-//        ArrayList<Printer> printers = Inputs.loadPrintersFromFile(printersFile);
-//        this.facade.preload(prints, printers, spools);
+    public PrinterManager(PrinterFacade facade) {
+        this.facade = facade;
     }
 
     public void addPrinter(int id, int printerType, String printerName, String manufacturer, int maxX, int maxY, int maxZ, int maxColors) {
@@ -37,11 +37,11 @@ public class PrinterManager {
     }
 
     public void registerPrinterFailure(int printerId) {
-        facade.registerPrinterFailure(printerId);
+        System.out.println(facade.registerPrinterFailure(printerId));
     }
 
     public void registerCompletion(int printerId) {
-        facade.registerCompletion(printerId);
+        System.out.println(facade.registerCompletion(printerId));
     }
 
     public Print findPrint(String printName) {
@@ -73,54 +73,30 @@ public class PrinterManager {
     }
 
     public void addPrintTask(String printName, List<String> colors, FilamentType type) {
-        facade.addPrintTask(printName, colors, type);
+        System.out.println(facade.addPrintTask(printName, colors, type));
     }
 
     public void selectPrintTask(Printer printer) {
-        facade.selectPrintTask(printer);
+        System.out.println(facade.selectPrintTask(printer));
     }
 
+    //Shows in menu
     public void showPrints() {
-        var prints = facade.getPrints();
-        System.out.println("<<---------- Available prints ---------->");
-        for (var p : prints) {
-            System.out.println(p);
-        }
-        System.out.println("<-------------------------------------->>");
+        System.out.println(facade.showPrints());
     }
 
+    //Shows in menu
     public void showSpools() {
-        var spools = facade.getSpools();
-        System.out.println("<<---------- Spools ---------->");
-        for (var spool : spools) {
-            System.out.println(spool);
-        }
-        System.out.println("<---------------------------->>");
+        System.out.println(facade.showSpools());
     }
 
+    //Shows in menu
     public void showPrinters() {
-        var printers = facade.getPrinters();
-        System.out.println("<<--------- Available printers --------->");
-        for (var p : printers) {
-            String output = p.toString();
-            PrintTask currentTask = facade.getPrinterCurrentTask(p);
-            if(currentTask != null) {
-                output = output.replace("-------->",
-                        "- Current Print Task: " + currentTask +
-                                System.lineSeparator() + "-------->");
-            }
-            System.out.println(output);
-        }
-        System.out.println("<-------------------------------------->>");
+        System.out.println(facade.showPrinters());
     }
 
+    //Shows in menu
     public void showPendingPrintTasks() {
-        ArrayList<PrintTask> printTasks = facade.getPendingPrintTasks();
-        System.out.println("<<--------- Pending Print Tasks --------->");
-
-        for (var p : printTasks) {
-            System.out.println(p);
-        }
-        System.out.println("<-------------------------------------->>");
+        System.out.println(facade.showPendingPrintTasks());
     }
 }
