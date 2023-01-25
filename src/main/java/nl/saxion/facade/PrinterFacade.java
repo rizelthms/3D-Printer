@@ -30,6 +30,19 @@ public class PrinterFacade {
         this.freePrinters.addAll(printers);
     }
 
+    /**
+     * Add a Printer to the list of all printers and the list of free printers.
+     * Instantiate a Printer from the list of input params required below.
+     *
+     * @param id Integer ID to assign to the printer.
+     * @param printerType The printer type as an integer.
+     * @param printerName The printer name to assign.
+     * @param manufacturer Manufacturer of the printer, a string.
+     * @param maxX Maximum supported range in the X axis of the print.
+     * @param maxY Maximum supported range in the Y axis of the print.
+     * @param maxZ Maximum supported range in the Z axis of the print.
+     * @param maxColors Maximum number of colors the printer supports.
+     */
     public void addPrinter(int id, int printerType, String printerName, String manufacturer, int maxX, int maxY, int maxZ, int maxColors) {
         PrinterType type = PrinterType.values()[printerType];
         Printer printer = PrinterFactory.getPrinter(id, type, printerName, manufacturer, maxX, maxY, maxZ, maxColors);
