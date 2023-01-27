@@ -11,10 +11,14 @@ public class FileReader {
 
     private PrinterFacade facade = new PrinterFacade();
 
+    private ArrayList<Print> prints;
+    private ArrayList<Spool> spools;
+    private ArrayList<Printer> printers;
+
     public void readFile(String printsFile, String spoolsFile, String printersFile) {
-        ArrayList<Print> prints = loadPrintsFromFile(printsFile);
-        ArrayList<Spool> spools = loadSpoolsFromFile(spoolsFile);
-        ArrayList<Printer> printers = loadPrintersFromFile(printersFile);
+        prints = loadPrintsFromFile(printsFile);
+        spools = loadSpoolsFromFile(spoolsFile);
+        printers = loadPrintersFromFile(printersFile);
         facade.preload(prints, spools, printers);
     }
 
@@ -106,5 +110,17 @@ public class FileReader {
         }
 
         return printerObjs;
+    }
+
+    public ArrayList<Print> getPrints() {
+        return prints;
+    }
+
+    public ArrayList<Spool> getSpools() {
+        return spools;
+    }
+
+    public ArrayList<Printer> getPrinters() {
+        return printers;
     }
 }
