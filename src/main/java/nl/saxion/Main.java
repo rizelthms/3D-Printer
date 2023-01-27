@@ -30,7 +30,7 @@ public class Main {
         manager = new PrinterManager(facade);
 
         //Start Menu
-        Menu menu = new Menu(facade,manager);
+        Menu menu = new Menu(facade,manager,fileReader);
         menu.start();
     }
 }

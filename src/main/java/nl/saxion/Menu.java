@@ -2,6 +2,9 @@ package nl.saxion;
 
 import nl.saxion.Models.*;
 import nl.saxion.facade.PrinterFacade;
+import nl.saxion.strategy.EfficientSpoolUsageStrategy;
+import nl.saxion.strategy.LessSpoolChangesStrategy;
+import nl.saxion.strategy.PrintStrategy;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,13 +18,15 @@ import java.util.List;
 public class Menu {
     PrinterFacade facade;
     PrinterManager manager;
+    FileReader fileReader;
 
     Scanner scanner = new Scanner(System.in);
-    private String printStrategy = "Less Spool Changes";
+    private PrintStrategy printStrategy = new LessSpoolChangesStrategy();
 
-    public Menu(PrinterFacade facade, PrinterManager manager) {
+    public Menu(PrinterFacade facade, PrinterManager manager, FileReader fileReader) {
         this.facade = facade;
         this.manager = manager;
+        this.fileReader = fileReader;
     }
 
     public void start() {
@@ -182,21 +187,41 @@ public class Menu {
         System.out.println("<----------------------------------->>");
     }
 
-    // This method only changes the name but does not actually work.
-    // It exists to demonstrate the output.
-    // in the future strategy might be added.
+    //Strategy class has been added
     public void changePrintStrategy() {
         System.out.println("<<---------- Change Strategy ------------->");
-        System.out.println("- Current strategy: " + printStrategy);
-        System.out.println("- 1: Less Spool Changes");
-        System.out.println("- 2: Efficient Spool Usage");
+        System.out.println("- Current strategy: " + printStrategy.getName());
+
+        System.out.println("- 1: " + new LessSpoolChangesStrategy().getName());
+        System.out.println("- 2: " + new EfficientSpoolUsageStrategy().getName());
         System.out.println("- Choose strategy: ");
         int strategyChoice = Inputs.numberInput(1, 2);
-        if(strategyChoice == 1) {
-            printStrategy = "- Less Spool Changes";
-        } else if( strategyChoice == 2) {
-            printStrategy = "- Efficient Spool Usage";
+
+        PrintStrategy strategy;
+        switch(strategyChoice) {
+            case 1:
+                if(!(printStrategy instanceof LessSpoolChangesStrategy))
+                    strategy = new LessSpoolChangesStrategy();
+                else {
+                    System.out.println("Strategy is already set to Less Spool Changes.");
+                    return;
+                }
+                break;
+            case 2:
+                if(!(printStrategy instanceof EfficientSpoolUsageStrategy))
+                    strategy = new EfficientSpoolUsageStrategy();
+                else {
+                    System.out.println("Strategy is already set to Efficient Spool Usage.");
+                    return;
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid strategy choice");
         }
+
+        printStrategy = strategy;
+        //Next line needs to be adjusted and should pass parameters for the strategy to change
+        printStrategy.executeStrategy();
         System.out.println("<----------------------------------->>");
     }
 
