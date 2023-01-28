@@ -1,10 +1,6 @@
 package nl.saxion;
 
 import nl.saxion.Models.*;
-import nl.saxion.strategy.EfficientSpoolUsageStrategy;
-import nl.saxion.strategy.LessSpoolChangesStrategy;
-import nl.saxion.strategy.PrintStrategy;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -15,25 +11,13 @@ import java.util.List;
  * It allows the user to choose different actions to perform, such as adding new print tasks or viewing pending print tasks.
  */
 public class Menu {
-    PrinterManagerFacade facade;
-    PrinterManager manager;
-    FileReader fileReader;
-
     Scanner scanner = new Scanner(System.in);
-    private PrintStrategy printStrategy = new LessSpoolChangesStrategy();
-
-    public Menu(PrinterManagerFacade facade, PrinterManager manager, FileReader fileReader) {
-        this.facade = facade;
-        this.manager = manager;
-        this.fileReader = fileReader;
-    }
-
-    public void start() {
-        menuSwitch();
-    }
+    PrinterManager manager = null;
+    private String printStrategy = "Less Spool Changes";
 
     // Call this method from the Main class to display the menu and handle user input.
-    public void menuSwitch() {
+    public void menuSwitch(PrinterManager printerManager) {
+        this.manager = printerManager;
         int choice = 1;
 
         while (choice > 0 && choice < 10) {
@@ -55,7 +39,7 @@ public class Menu {
                 case InvalidOption -> exit();
                 default -> {
                     System.out.println("no existing orders"); // in the menuchoice we make a nextline which will recover anything not only a int between 0 and 9 so we restart menuswitch until we have a correct value.
-                    menuSwitch();
+                    menuSwitch(printerManager);
                 }
             }
         }
@@ -99,6 +83,7 @@ public class Menu {
         System.exit(0);
     }
 
+
     public void addNewPrintTask() {
         List<String> colors = new ArrayList<>();
         var prints = manager.getPrints();
@@ -124,13 +109,18 @@ public class Menu {
         System.out.println("-------------------------------------->");
         FilamentType type;
         switch (ftype) {
-            case 1 -> type = FilamentType.PLA;
-            case 2 -> type = FilamentType.PETG;
-            case 3 -> type = FilamentType.ABS;
-            default -> {
+            case 1:
+                type = FilamentType.PLA;
+                break;
+            case 2:
+                type = FilamentType.PETG;
+                break;
+            case 3:
+                type = FilamentType.ABS;
+                break;
+            default:
                 System.out.println("- Not a valid filamentType, bailing out");
                 return;
-            }
         }
         var spools = manager.getSpools();
         System.out.println("<---------- Colors ----------");
@@ -186,41 +176,19 @@ public class Menu {
         System.out.println("<----------------------------------->>");
     }
 
-    //Strategy class has been added
+    // This method only changes the name but does not actually work.
+    // It exists to demonstrate the output.
+    // in the future strategy might be added.
     public void changePrintStrategy() {
         System.out.println("<<---------- Change Strategy ------------->");
-        System.out.println("- Current strategy: " + printStrategy.getName());
-
-        System.out.println("- 1: " + new LessSpoolChangesStrategy().getName());
-        System.out.println("- 2: " + new EfficientSpoolUsageStrategy().getName());
+        System.out.println("- Current strategy: " + printStrategy);
+        System.out.println("- 1: Less Spool Changes");
+        System.out.println("- 2: Efficient Spool Usage");
         System.out.println("- Choose strategy: ");
         int strategyChoice = Inputs.numberInput(1, 2);
 
-        PrintStrategy strategy;
-        switch(strategyChoice) {
-            case 1:
-                if(!(printStrategy instanceof LessSpoolChangesStrategy))
-                    strategy = new LessSpoolChangesStrategy();
-                else {
-                    System.out.println("Strategy is already set to Less Spool Changes.");
-                    return;
-                }
-                break;
-            case 2:
-                if(!(printStrategy instanceof EfficientSpoolUsageStrategy))
-                    strategy = new EfficientSpoolUsageStrategy();
-                else {
-                    System.out.println("Strategy is already set to Efficient Spool Usage.");
-                    return;
-                }
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid strategy choice");
-        }
-
-        printStrategy = strategy;
-        //Next line needs to be adjusted and should pass parameters for the strategy to change
-        printStrategy.executeStrategy();
+        StrategyOptions strategyOption = StrategyOptions.values()[strategyChoice];
+        manager.selectStrategy(strategyOption);
         System.out.println("<----------------------------------->>");
     }
 

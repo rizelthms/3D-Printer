@@ -1,34 +1,33 @@
 package nl.saxion;
 
+import java.util.*;
+
+
 public class Main {
+    Menu menu = new Menu();
+    PrinterManager manager = new PrinterManager();
+    Scanner scanner = new Scanner(System.in);
 
-    PrinterManagerFacade facade;
-    PrinterManager manager;
-    FileReader fileReader = new FileReader();
-
+    // Run run() method
     public static void main(String[] args) {
         new Main().run(args);
     }
 
-    //Find filename and start the menu
+    // Read data and loop menu options
     public void run(String[] args) {
         String printsFile = "";
-        String spoolsFile = "";
         String printersFile = "";
+        String spoolsFile = "";
 
         if (args.length > 0) {
             printsFile = args[0];
             spoolsFile = args[1];
             printersFile = args[2];
         }
-
-        fileReader.readFile(printsFile, spoolsFile, printersFile);
-
-        facade = new PrinterManagerFacade();
-        manager = new PrinterManager(facade);
-
-        //Start Menu
-        Menu menu = new Menu(facade,manager,fileReader);
-        menu.start();
+        manager.preload(printsFile, printersFile, spoolsFile);
+        menu.menuSwitch(manager);
     }
+
+    // Exit (does nothing)
+    private void exit() {}
 }
