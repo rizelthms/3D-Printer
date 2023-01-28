@@ -1,8 +1,10 @@
 package nl.saxion;
 
 import nl.saxion.Models.*;
+import nl.saxion.strategy.EfficientSpoolUsageStrategy;
 import nl.saxion.strategy.LessSpoolChangesStrategy;
 import nl.saxion.strategy.PrintStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -10,14 +12,13 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.Date;
 import java.util.TimerTask;
-import static nl.saxion.Models.StrategyOptions.LessSpoolChange;
 
 public class PrinterManagerFacade {
-    private ArrayList<Printer> printers = new ArrayList<Printer>(); // TODO use interface
-    private ArrayList<Spool> spools = new ArrayList<Spool>(); // TODO use interface
-    private ArrayList<Spool> freeSpools = new ArrayList<>(); // TODO: Decide if this should be used at all.
+    private ArrayList<Printer> printers = new ArrayList<Printer>();
+    private ArrayList<Spool> spools = new ArrayList<Spool>();
+    private ArrayList<Spool> freeSpools = new ArrayList<>();
     private ArrayList<Printer> freePrinters = new ArrayList<>();
-    private ArrayList<Print> prints = new ArrayList<>(); // TODO use interface
+    private ArrayList<Print> prints = new ArrayList<>();
     private ArrayList<PrintTask> pendingPrintTasks = new ArrayList<>();
     private HashMap<Printer, PrintTask> runningPrintTasks = new HashMap();
     Timer taskTimer = new Timer("taskTimer");
@@ -208,14 +209,10 @@ public class PrinterManagerFacade {
 
     public void selectStrategy(StrategyOptions strategyOption) {
         switch (strategyOption) {
-            case LessSpoolChange:
-                printStrategy = new LessSpoolChangesStrategy();
-                break;
-            case Smt:
-                printStrategy = new Smt();
-                break;
-            default:
-                break;
+            case LessSpoolChange -> printStrategy = new LessSpoolChangesStrategy();
+            case EfficientSpoolUsageStrategy -> printStrategy = new EfficientSpoolUsageStrategy();
+            default -> {
+            }
         }
     }
 
@@ -311,4 +308,3 @@ public class PrinterManagerFacade {
     }
 
 }
-
