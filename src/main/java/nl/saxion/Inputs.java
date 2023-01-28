@@ -12,7 +12,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 import nl.saxion.Models.*;
 
-
 public class Inputs {
     static Scanner scanner = new Scanner(System.in);
 
@@ -32,8 +31,6 @@ public class Inputs {
             e.printStackTrace();
         }
 
-        // ----- TEST PRINT - REMOVE
-        System.out.println(data);
         return data;
     }
 
@@ -65,7 +62,6 @@ public class Inputs {
             );
         }
 
-        System.out.println(printObjs);
         return printObjs;
     }
 

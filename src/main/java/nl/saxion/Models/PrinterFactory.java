@@ -55,6 +55,16 @@ public class PrinterFactory {
                         maxZ,
                         maxColors
                 );
+            case HousedMultiColorPrinter:
+                return new HousedMultiColorPrinter(
+                        id,
+                        printerName,
+                        manufacturer,
+                        maxX,
+                        maxY,
+                        maxZ,
+                        maxColors
+                );
             default:
                 System.err.println("Invalid printer type: " + printerType);
         }

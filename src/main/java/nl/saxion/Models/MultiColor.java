@@ -86,6 +86,7 @@ public class MultiColor extends StandardFDM {
      * @param doSpoolMatch True if we should match the spool on the printer to the task.
      * @return False if the task is not a match, else true.
      */
+    @Override
     public boolean isValidTask(PrintTask printTask, boolean doSpoolMatch) {
         // If we must match with the spool, spool should be non-null.
         if (doSpoolMatch && getCurrentSpool() == null) return false;

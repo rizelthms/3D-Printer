@@ -13,6 +13,7 @@ public class HousedPrinter extends StandardFDM {
      * @param doSpoolMatch True if we should match the spool on the printer to the task.
      * @return False if the task is not a match, else true.
      */
+    @Override
     public boolean isValidTask(PrintTask printTask, boolean doSpoolMatch) {
         Spool spool = getCurrentSpool();
         boolean isInvalidMaxColors = printTask.getColors().size() != 1;
