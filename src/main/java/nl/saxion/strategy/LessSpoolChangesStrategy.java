@@ -8,7 +8,7 @@ import nl.saxion.utils.Tools;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LessSpoolChangesStartegy implements PrintStrategy {
+public class LessSpoolChangesStrategy implements PrintStrategy {
     /**
      * Does spool selection, changes the spool if a valid set was found, and
      *     returns the task for which spools were matched.
