@@ -2,34 +2,53 @@ package nl.saxion.strategy;
 
 import nl.saxion.Models.PrintTask;
 import nl.saxion.Models.Printer;
+import nl.saxion.Models.Spool;
+import nl.saxion.PrinterManagerFacade;
+import nl.saxion.utils.Tools;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LessSpoolChangesStrategy implements PrintStrategy{
-    // This strategy is optimized for minimizing the number of times the spool needs to be changed
-    // during a print job. It may accomplish this by printing with a single color or material
-    // for as long as possible, or by selecting a specific order of printing layers to reduce
-    // the number of spool changes required.
+public class LessSpoolChangesStartegy implements PrintStrategy {
+    /**
+     * Does spool selection, changes the spool if a valid set was found, and
+     *     returns the task for which spools were matched.
+     *
+     * @param facade The PrinterManagerFacade object, i.e. the caller.
+     * @param printer The Printer object we're finding spools for.
+     * @return The task for which spools were found.
+     */
+    public PrintTask doSpoolSelection(PrinterManagerFacade facade, Printer printer) {
+        for (PrintTask printTask : facade.getPendingPrintTasks()) {
+            if (printer.isValidTask(printTask, false)) {
+                ArrayList<Spool> newSpools = matchSpools(facade.getFreeSpools(), printTask);
 
-    private String name = "Less Spool Changes";
-
-    //The following method should be used, but I need to pass information along
-//    public void executeStrategy(Printer printer, PrintTask task) {
-//    }
-
-    public void executeStrategy() {
-        //TODO: Implement some logic for the 'less spool changes' strategy
-        System.out.println("Using strategy: " + this.name);
-
-        // Example behavior:
-        // - Analyze the 3D model to be printed and determine which color or material
-        //   can be used for the longest period of time without needing to change the spool.
-        // - Reorder the layers of the 3D model to be printed in a way that reduces the number
-        //   of spool changes required.
-        // - Begin printing with the selected color or material, only switching spools when
-        //   absolutely necessary.
-
+                if (newSpools.size() == printTask.getColors().size()) {
+                    facade.changeSpool(printer, printTask, newSpools);
+                    return printTask;
+                }
+            }
+        }
+        return null;
     }
 
-    public String getName() {
-        return name;
+    public ArrayList<Spool> matchSpools(ArrayList<Spool> spools, PrintTask task) {
+        ArrayList<Spool> validSpools = new ArrayList<Spool>();
+        List<String> colors = task.getColors();
+
+        for (int i = 0; i < colors.size(); i++) {
+            for (Spool spool : spools) {
+                String curColor = colors.get(i);
+                boolean spoolMatched = spool.spoolMatch(curColor, task.getFilamentType());
+                boolean hasSpace = spool.isValidCut(task.getPrint().getFilamentLength().get(i));
+
+                if (hasSpace && spoolMatched && !Tools.containsSpool(validSpools, curColor)) {
+                    validSpools.add(spool);
+                    break; // Match only one spool per color.
+                }
+            }
+        }
+
+        return validSpools;
     }
 }
+
