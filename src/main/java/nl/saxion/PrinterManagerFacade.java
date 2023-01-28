@@ -1,6 +1,8 @@
 package nl.saxion;
 
 import nl.saxion.Models.*;
+import nl.saxion.strategy.LessSpoolChangesStrategy;
+import nl.saxion.strategy.PrintStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -8,6 +10,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.Date;
 import java.util.TimerTask;
+import static nl.saxion.Models.StrategyOptions.LessSpoolChange;
 
 public class PrinterManagerFacade {
     private ArrayList<Printer> printers = new ArrayList<Printer>(); // TODO use interface
@@ -18,7 +21,7 @@ public class PrinterManagerFacade {
     private ArrayList<PrintTask> pendingPrintTasks = new ArrayList<>();
     private HashMap<Printer, PrintTask> runningPrintTasks = new HashMap();
     Timer taskTimer = new Timer("taskTimer");
-    private PrintStrategy printStrategy = new LessSpoolChange();
+    private PrintStrategy printStrategy = new LessSpoolChangesStrategy();
 
     public void preload(ArrayList<Print> prints, ArrayList<Printer> printers, ArrayList<Spool> spools) {
         this.prints.addAll(prints);
@@ -206,7 +209,7 @@ public class PrinterManagerFacade {
     public void selectStrategy(StrategyOptions strategyOption) {
         switch (strategyOption) {
             case LessSpoolChange:
-                printStrategy = new LessSpoolChange();
+                printStrategy = new LessSpoolChangesStrategy();
                 break;
             case Smt:
                 printStrategy = new Smt();
