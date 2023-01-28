@@ -1,7 +1,6 @@
 package nl.saxion;
 
 import nl.saxion.Models.*;
-import nl.saxion.facade.PrinterFacade;
 import nl.saxion.strategy.EfficientSpoolUsageStrategy;
 import nl.saxion.strategy.LessSpoolChangesStrategy;
 import nl.saxion.strategy.PrintStrategy;
@@ -16,14 +15,14 @@ import java.util.List;
  * It allows the user to choose different actions to perform, such as adding new print tasks or viewing pending print tasks.
  */
 public class Menu {
-    PrinterFacade facade;
+    PrinterManagerFacade facade;
     PrinterManager manager;
     FileReader fileReader;
 
     Scanner scanner = new Scanner(System.in);
     private PrintStrategy printStrategy = new LessSpoolChangesStrategy();
 
-    public Menu(PrinterFacade facade, PrinterManager manager, FileReader fileReader) {
+    public Menu(PrinterManagerFacade facade, PrinterManager manager, FileReader fileReader) {
         this.facade = facade;
         this.manager = manager;
         this.fileReader = fileReader;

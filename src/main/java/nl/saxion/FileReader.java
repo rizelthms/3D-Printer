@@ -1,7 +1,6 @@
 package nl.saxion;
 
 import nl.saxion.Models.*;
-import nl.saxion.facade.PrinterFacade;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 
 public class FileReader {
 
-    private PrinterFacade facade = new PrinterFacade();
+    private PrinterManagerFacade facade = new PrinterManagerFacade();
 
     private ArrayList<Print> prints;
     private ArrayList<Spool> spools;

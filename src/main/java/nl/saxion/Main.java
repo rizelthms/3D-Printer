@@ -1,10 +1,8 @@
 package nl.saxion;
 
-import nl.saxion.facade.PrinterFacade;
-
 public class Main {
 
-    PrinterFacade facade;
+    PrinterManagerFacade facade;
     PrinterManager manager;
     FileReader fileReader = new FileReader();
 
@@ -26,7 +24,7 @@ public class Main {
 
         fileReader.readFile(printsFile, spoolsFile, printersFile);
 
-        facade = new PrinterFacade();
+        facade = new PrinterManagerFacade();
         manager = new PrinterManager(facade);
 
         //Start Menu
