@@ -36,13 +36,28 @@ public class Spool {
     }
 
     /**
+     * This method will cut filament out based on the provided length.
+     *
+     * @param byLength Length to cut out.
+     * @return boolean which tells you if the reduction was successful.
+     */
+    public boolean reduceLength(double byLength) {
+        if (isValidCut(byLength)) {
+            this.length -= byLength;
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * This method will check if we have enough available length on the spool for a reduction
      *     by the provided int.
      *
      * @param byLength Length to cut out.
      * @return boolean which tells you if it's possible.
      */
-    public boolean reduceLength(double byLength) {
+    public boolean isValidCut(double byLength) {
         if (this.length < byLength) return false;
 
         return true;
