@@ -39,8 +39,9 @@ public class PrintTask {
             for (Spool spool : spools) {
                 String curColor = colors.get(i);
                 boolean spoolMatched = spool.spoolMatch(curColor, filamentType);
+                boolean hasSpace = spool.isValidCut(print.getFilamentLength().get(i));
 
-                if (spoolMatched && !Tools.containsSpool(validSpools, curColor)) {
+                if (hasSpace && spoolMatched && !Tools.containsSpool(validSpools, curColor)) {
                     validSpools.add(spool);
                     break; // Match only one spool per color.
                 }
@@ -49,5 +50,4 @@ public class PrintTask {
 
         return validSpools;
     }
-
 }
