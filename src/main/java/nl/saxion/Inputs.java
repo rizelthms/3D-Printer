@@ -46,7 +46,14 @@ public class Inputs {
         }
 
         try (BufferedReader br = new BufferedReader(new FileReader(URLDecoder.decode(resource.getPath(), StandardCharsets.UTF_8)))) {
+            int count = 0;
+
             while ((line = br.readLine()) != null) {
+                if (count == 0) {
+                    count += 1;
+                    continue; // Skip header
+                }
+
                 data.add(line.split(","));
             }
         } catch (IOException e) {
@@ -119,7 +126,7 @@ public class Inputs {
         ArrayList<Spool> spoolObjs = new ArrayList<Spool>();
 
         if(filename.length() == 0) {
-            filename = "spools.json";
+            filename = "spools1.csv";
         }
         List<String[]> spools = Inputs.readCSV(filename);
 
