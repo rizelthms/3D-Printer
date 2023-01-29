@@ -32,4 +32,22 @@ public class PrintTask {
         return "< " + print.getName() + " " + filamentType + " " + colors.toString() + " >";
     }
 
+    public ArrayList<Spool> getValidSpools(ArrayList<Spool> spools) {
+        ArrayList<Spool> validSpools = new ArrayList<Spool>();
+
+        for (int i = 0; i < colors.size(); i++) {
+            for (Spool spool : spools) {
+                String curColor = colors.get(i);
+                boolean spoolMatched = spool.spoolMatch(curColor, filamentType);
+                boolean hasSpace = spool.isValidCut(print.getFilamentLength().get(i));
+
+                if (hasSpace && spoolMatched && !Tools.containsSpool(validSpools, curColor)) {
+                    validSpools.add(spool);
+                    break; // Match only one spool per color.
+                }
+            }
+        }
+
+        return validSpools;
+    }
 }

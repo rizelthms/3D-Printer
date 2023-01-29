@@ -15,6 +15,7 @@ public class TestParser {
     private ArrayList<Printer> printers = new ArrayList<>();
     private ArrayList<Print> prints = new ArrayList<>();
     private ArrayList<Spool> spools = new ArrayList<>();
+    private ArrayList<PrintTask> printTasks = new ArrayList<>();
     private ArrayList<PrintTask> expectedPrintTasks = new ArrayList<>();
     private ArrayList<String> printList = new ArrayList<>();
     private ArrayList<ValidCombo> validCombos = new ArrayList<>();

@@ -38,6 +38,10 @@ public class Printer implements ParsedString {
         return currentPrint.length() > 0;
     }
 
+    public String activePrintString() {
+        return id + ": " + name + " - " + currentPrint;
+    }
+
     public void setCurrentSpool(int spool) {
         currentSpool = spool;
     }
