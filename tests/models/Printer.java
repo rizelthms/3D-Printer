@@ -34,20 +34,6 @@ public class Printer implements ParsedString {
         return currentSpool;
     }
 
-    public boolean printing() {
-        return currentPrint.length() > 0;
-    }
-
-    public void setCurrentSpool(int spool) {
-        currentSpool = spool;
-    }
-    public void setCurrentSpool(int spool, int spool2, int spool3, int spool4) {
-        currentSpool = spool;
-        this.spool2 = spool2;
-        this.spool3 = spool3;
-        this.spool4 = spool4;
-    }
-
     public int getSpool(int nr) {
         if(nr == 1 ) {
             return currentSpool;
