@@ -153,19 +153,6 @@ public class Inputs {
     }
 
     /**
-     * Wait for and grab the latest string input from stdin.
-     *
-     * @return The line read by scanner.
-     */
-    public static String stringInput() {
-        String input = null;
-        while(input == null || input.length() == 0){
-            input = scanner.nextLine();
-        }
-        return input;
-    }
-
-    /**
      * Wait for and grab the latest number input from stdin.
      *
      * @return The number entered.
