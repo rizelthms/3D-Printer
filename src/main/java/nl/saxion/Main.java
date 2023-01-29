@@ -28,6 +28,4 @@ public class Main {
         menu.menuSwitch(manager);
     }
 
-    // Exit (does nothing)
-    private void exit() {}
 }
