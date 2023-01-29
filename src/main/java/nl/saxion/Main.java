@@ -6,7 +6,6 @@ import java.util.*;
 public class Main {
     Menu menu = new Menu();
     PrinterManager manager = new PrinterManager();
-    Scanner scanner = new Scanner(System.in);
 
     // Run run() method
     public static void main(String[] args) {
