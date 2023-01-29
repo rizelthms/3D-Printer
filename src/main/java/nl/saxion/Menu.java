@@ -109,18 +109,13 @@ public class Menu {
         System.out.println("-------------------------------------->");
         FilamentType type;
         switch (ftype) {
-            case 1:
-                type = FilamentType.PLA;
-                break;
-            case 2:
-                type = FilamentType.PETG;
-                break;
-            case 3:
-                type = FilamentType.ABS;
-                break;
-            default:
+            case 1 -> type = FilamentType.PLA;
+            case 2 -> type = FilamentType.PETG;
+            case 3 -> type = FilamentType.ABS;
+            default -> {
                 System.out.println("- Not a valid filamentType, bailing out");
                 return;
+            }
         }
         var spools = manager.getSpools();
         System.out.println("<---------- Colors ----------");
