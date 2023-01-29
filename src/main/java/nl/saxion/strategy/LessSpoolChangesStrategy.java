@@ -23,7 +23,7 @@ public class LessSpoolChangesStrategy implements PrintStrategy {
                 ArrayList<Spool> newSpools = matchSpools(facade.getFreeSpools(), printTask);
 
                 if (newSpools.size() == printTask.getColors().size()) {
-                    facade.changeSpool(printer, newSpools);
+                    facade.changeSpool(printer, printTask, newSpools);
                     return printTask;
                 }
             }

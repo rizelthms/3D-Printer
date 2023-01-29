@@ -49,7 +49,7 @@ public class EfficientSpoolUsageStrategy implements PrintStrategy {
         validSpools = matchSpools(validSpools, chosenTask);
 
         if (chosenTask != null && validSpools.size() == chosenTask.getColors().size()) {
-            facade.changeSpool(printer, validSpools);
+            facade.changeSpool(printer, chosenTask, validSpools);
             return chosenTask;
         }
 

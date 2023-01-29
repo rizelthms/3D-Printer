@@ -31,8 +31,33 @@ public class PrinterManagerFacade {
         this.freeSpools.addAll(spools);
     }
 
+    /**
+     * Add a Printer to the list of all printers and the list of free printers.
+     * Instantiate a Printer from the list of input params required below.
+     *
+     * @param id Integer ID to assign to the printer.
+     * @param printerType The printer type as an integer.
+     * @param printerName The printer name to assign.
+     * @param manufacturer Manufacturer of the printer, a string.
+     * @param maxX Maximum supported range in the X axis of the print.
+     * @param maxY Maximum supported range in the Y axis of the print.
+     * @param maxZ Maximum supported range in the Z axis of the print.
+     * @param maxColors Maximum number of colors the printer supports.
+     */
+    public void addPrinter(int id, int printerType, String printerName, String manufacturer, int maxX, int maxY, int maxZ, int maxColors) {
+        PrinterType type = PrinterType.values()[printerType];
+        Printer printer = PrinterFactory.getPrinter(id, type, printerName, manufacturer, maxX, maxY, maxZ, maxColors);
+        printers.add(printer);
+        freePrinters.add(printer);
+    }
+
     public ArrayList<Printer> getPrinters() {
         return printers;
+    }
+
+    public void addSpool(Spool spool) {
+        spools.add(spool);
+        freeSpools.add(spool);
     }
 
     public ArrayList<Spool> getSpools() {
@@ -41,6 +66,15 @@ public class PrinterManagerFacade {
 
     public ArrayList<Spool> getFreeSpools() {
         return freeSpools;
+    }
+
+    public Spool getSpoolByID(int id) {
+        for(Spool s: spools) {
+            if(s.getId() == id) {
+                return s;
+            }
+        }
+        return null;
     }
 
     public void registerPrinterFailure(int printerId) {
@@ -129,6 +163,11 @@ public class PrinterManagerFacade {
         return prints;
     }
 
+    public void addPrint(String name, int height, int width, int length, ArrayList<Double> filamentLength, int printTime) {
+        Print p = new Print(name, height, width, length, filamentLength, printTime);
+        prints.add(p);
+    }
+
     public void startInitialQueue() {
         for(Printer printer: printers) {
             selectPrintTask(printer);
@@ -207,7 +246,7 @@ public class PrinterManagerFacade {
         return;
     }
 
-    public void changeSpool(Printer printer, ArrayList<Spool> chosenSpools) {
+    public void changeSpool(Printer printer, PrintTask printTask, ArrayList<Spool> chosenSpools) {
         for (Spool spool : printer.getCurrentSpools()) {
             freeSpools.add(spool);
         }
