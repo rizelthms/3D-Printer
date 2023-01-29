@@ -1,12 +1,8 @@
 package nl.saxion;
 
-import java.util.*;
-
-
 public class Main {
     Menu menu = new Menu();
     PrinterManager manager = new PrinterManager();
-    Scanner scanner = new Scanner(System.in);
 
     // Run run() method
     public static void main(String[] args) {
@@ -28,6 +24,4 @@ public class Main {
         menu.menuSwitch(manager);
     }
 
-    // Exit (does nothing)
-    private void exit() {}
 }

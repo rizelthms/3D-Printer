@@ -4,7 +4,6 @@ import nl.saxion.Models.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class PrinterManager {
     private PrinterManagerFacade facade = new PrinterManagerFacade();
 
@@ -15,73 +14,20 @@ public class PrinterManager {
         this.facade.preload(prints, printers, spools);
     }
 
-    public void addPrinter(int id, int printerType, String printerName, String manufacturer, int maxX, int maxY, int maxZ, int maxColors) {
-        facade.addPrinter(id, printerType, printerName, manufacturer, maxX, maxY, maxZ, maxColors);
-    }
-
-    public ArrayList<Printer> getPrinters() {
-        return facade.getPrinters();
-    }
-
-    public void addSpool(Spool spool) {
-        facade.addSpool(spool);
-    }
-
-    public ArrayList<Spool> getSpools() {
-        return facade.getSpools();
-    }
-
-    // Unused
-    public Spool getSpoolByID(int id) {
-        return facade.getSpoolByID(id);
-    }
-
-    public void registerPrinterFailure(int printerId) {
-        facade.registerPrinterFailure(printerId);
-    }
-
-    public void registerCompletion(int printerId) {
-        facade.registerCompletion(printerId);
-    }
-
-    public Print findPrint(String printName) {
-        return facade.findPrint(printName);
+    public ArrayList<Print> getPrints() {
+        return facade.getPrints();
     }
 
     public Print findPrint(int index) {
         return facade.findPrint(index);
     }
 
-    public PrintTask getPrinterCurrentTask(Printer printer) {
-        return facade.getPrinterCurrentTask(printer);
+    public ArrayList<Spool> getSpools() {
+        return facade.getSpools();
     }
 
-    public ArrayList<PrintTask> getPendingPrintTasks() {
-        return facade.getPendingPrintTasks();
-    }
-
-    public ArrayList<Print> getPrints() {
-        return facade.getPrints();
-    }
-
-    public void addPrint(String name, int height, int width, int length, ArrayList<Double> filamentLength, int printTime) {
-        facade.addPrint(name, height, width, length, filamentLength, printTime);
-    }
-
-    public void startInitialQueue() {
-        facade.startInitialQueue();
-    }
-
-    public void addPrintTask(String printName, List<String> colors, FilamentType type) {
-        facade.addPrintTask(printName, colors, type);
-    }
-
-    public void selectPrintTask(Printer printer) {
-        facade.selectPrintTask(printer);
-    }
-
-    public void selectStrategy(StrategyOptions strategyOption) {
-        facade.selectStrategy(strategyOption);
+    public ArrayList<Printer> getPrinters() {
+        return facade.getPrinters();
     }
 
     public void showPrints() {
@@ -127,5 +73,27 @@ public class PrinterManager {
         }
         System.out.println("<-------------------------------------->>");
     }
+
+    public void addPrintTask(String printName, List<String> colors, FilamentType type) {
+        facade.addPrintTask(printName, colors, type);
+    }
+
+
+    public void startInitialQueue() {
+        facade.startInitialQueue();
+    }
+
+    public void selectStrategy(StrategyOptions strategyOption) {
+        facade.selectStrategy(strategyOption);
+    }
+
+    public void registerPrinterFailure(int printerId) {
+        facade.registerPrinterFailure(printerId);
+    }
+
+    public void registerCompletion(int printerId) {
+        facade.registerCompletion(printerId);
+    }
+
 }
 
