@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.FileReader;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLDecoder;
@@ -28,6 +29,27 @@ public class Inputs {
         try (FileReader reader = new FileReader(URLDecoder.decode(resource.getPath(), StandardCharsets.UTF_8))) {
             data = (JSONArray) jsonParser.parse(reader);
         } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+
+    public static List<String[]> readCSV(String filename) {
+        List<String[]> data = new ArrayList<String[]>();
+        String line = "";
+        URL resource = Inputs.class.getResource("/" + filename);
+
+        if (resource == null) {
+            System.err.println("Warning: Could not find " + filename);
+            return data;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(URLDecoder.decode(resource.getPath(), StandardCharsets.UTF_8)))) {
+            while ((line = br.readLine()) != null) {
+                data.add(line.split(","));
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -99,14 +121,13 @@ public class Inputs {
         if(filename.length() == 0) {
             filename = "spools.json";
         }
-        JSONArray spools = Inputs.readJSON(filename);
+        List<String[]> spools = Inputs.readCSV(filename);
 
-        for (Object p : spools) {
-            JSONObject spool = (JSONObject) p;
-            int id = ((Long) spool.get("id")).intValue();
-            String color = (String) spool.get("color");
-            String filamentType = (String) spool.get("filamentType");
-            double length = (Double) spool.get("length");
+        for (String[] p : spools) {
+            int id = Integer.parseInt(p[0]);
+            String color = p[1];
+            String filamentType = p[2];
+            double length = Double.parseDouble(p[3]);
             FilamentType type;
 
             switch (filamentType) {
@@ -121,6 +142,7 @@ public class Inputs {
             spoolObjs.add(new Spool(id, color, type, length));
         }
 
+        System.out.println(spoolObjs);
         return spoolObjs;
     }
 
