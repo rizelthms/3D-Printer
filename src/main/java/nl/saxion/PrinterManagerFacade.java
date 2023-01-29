@@ -1,10 +1,7 @@
 package nl.saxion;
 
 import nl.saxion.Models.*;
-import nl.saxion.strategy.EfficientSpoolUsageStrategy;
-import nl.saxion.strategy.LessSpoolChangesStrategy;
-import nl.saxion.strategy.PrintStrategy;
-
+import nl.saxion.strategy.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
