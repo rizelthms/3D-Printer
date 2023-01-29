@@ -13,10 +13,6 @@ public class Spool implements ParsedString{
           this.length = length;
       }
 
-      public void reduceLength(double shorten) {
-          length -= shorten;
-      }
-
     public String getColor() {
         return color;
     }

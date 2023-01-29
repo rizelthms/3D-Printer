@@ -16,10 +16,6 @@ public class PrintTask implements ParsedString {
         }
     }
 
-    public PrintTask(Print print) {
-        this.print = print;
-    }
-
     public String getName() {
         return print.getName() + " - " + filamentType;
     }
