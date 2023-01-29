@@ -171,7 +171,9 @@ public class Menu {
         System.out.println("<----------------------------------->>");
     }
 
-    //Strategy Pattern
+    // This method only changes the name but does not actually work.
+    // It exists to demonstrate the output.
+    // in the future strategy might be added.
     public void changePrintStrategy() {
         System.out.println("<<---------- Change Strategy ------------->");
         System.out.println("- Current strategy: " + printStrategy);
