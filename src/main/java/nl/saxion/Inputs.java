@@ -149,7 +149,6 @@ public class Inputs {
             spoolObjs.add(new Spool(id, color, type, length));
         }
 
-        System.out.println(spoolObjs);
         return spoolObjs;
     }
 
