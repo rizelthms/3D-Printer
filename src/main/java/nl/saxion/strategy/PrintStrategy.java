@@ -2,8 +2,8 @@ package nl.saxion.strategy;
 
 import nl.saxion.Models.PrintTask;
 import nl.saxion.Models.Printer;
-import nl.saxion.PrinterManagerFacade;
+import nl.saxion.PrinterManager;
 
 public interface PrintStrategy {
-    public PrintTask doSpoolSelection(PrinterManagerFacade facade, Printer printer);
+    PrintTask doSpoolSelection(PrinterManager printerManager, Printer printer);
 }
