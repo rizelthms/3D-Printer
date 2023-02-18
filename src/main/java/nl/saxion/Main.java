@@ -1,11 +1,8 @@
 package nl.saxion;
 
-import java.util.*;
-
-
 public class Main {
     Menu menu = new Menu();
-    PrinterManager manager = new PrinterManager();
+    PrinterManagerFacade facade = new PrinterManagerFacade();
 
     // Run run() method
     public static void main(String[] args) {
@@ -23,8 +20,8 @@ public class Main {
             spoolsFile = args[1];
             printersFile = args[2];
         }
-        manager.preload(printsFile, printersFile, spoolsFile);
-        menu.menuSwitch(manager);
+        facade.preload(printsFile, printersFile, spoolsFile);
+        menu.menuSwitch(facade);
     }
 
 }
