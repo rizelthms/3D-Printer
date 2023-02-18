@@ -1,11 +1,10 @@
 package nl.saxion.strategy;
 
-import nl.saxion.PrinterManagerFacade;
+import nl.saxion.PrinterManager;
 import nl.saxion.Models.PrintTask;
 import nl.saxion.Models.Printer;
 import nl.saxion.Models.Spool;
 import nl.saxion.utils.Tools;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,18 +13,18 @@ public class EfficientSpoolUsageStrategy implements PrintStrategy {
      * Does spool selection, changes the spool if a valid set was found, and
      *     returns the task for which spools were matched.
      *
-     * @param facade The PrinterManagerFacade object, i.e. the caller.
+     * @param printerManager The PrinterManager object, i.e. the caller.
      * @param printer The Printer object we're finding spools for.
      * @return The task for which spools were found.
      */
-    public PrintTask doSpoolSelection(PrinterManagerFacade facade, Printer printer) {
-        ArrayList<Spool> sortedSpools = Tools.sortSpoolsByLength(facade.getFreeSpools());
+    public PrintTask doSpoolSelection(PrinterManager printerManager, Printer printer) {
+        ArrayList<Spool> sortedSpools = Tools.sortSpoolsByLength(printerManager.getFreeSpools());
         ArrayList<Spool> validSpools = new ArrayList<Spool>();
         ArrayList<PrintTask> filteredPrints = new ArrayList<PrintTask>();
         PrintTask chosenTask = null;
 
         for (Spool spool : sortedSpools) {
-            for (PrintTask printTask : facade.getPendingPrintTasks()) {
+            for (PrintTask printTask : printerManager.getPendingPrintTasks()) {
                 List<String> colors = printTask.getColors();
 
                 if (printer.isValidTask(printTask, false)) {
@@ -49,7 +48,7 @@ public class EfficientSpoolUsageStrategy implements PrintStrategy {
         validSpools = matchSpools(validSpools, chosenTask);
 
         if (chosenTask != null && validSpools.size() == chosenTask.getColors().size()) {
-            facade.changeSpool(printer, chosenTask, validSpools);
+            printerManager.changeSpool(printer, chosenTask, validSpools);
             return chosenTask;
         }
 

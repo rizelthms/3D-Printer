@@ -3,7 +3,7 @@ package nl.saxion.strategy;
 import nl.saxion.Models.PrintTask;
 import nl.saxion.Models.Printer;
 import nl.saxion.Models.Spool;
-import nl.saxion.PrinterManagerFacade;
+import nl.saxion.PrinterManager;
 import nl.saxion.utils.Tools;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,17 +13,17 @@ public class LessSpoolChangesStrategy implements PrintStrategy {
      * Does spool selection, changes the spool if a valid set was found, and
      *     returns the task for which spools were matched.
      *
-     * @param facade The PrinterManagerFacade object, i.e. the caller.
+     * @param printerManager The PrinterManager object, i.e. the caller.
      * @param printer The Printer object we're finding spools for.
      * @return The task for which spools were found.
      */
-    public PrintTask doSpoolSelection(PrinterManagerFacade facade, Printer printer) {
-        for (PrintTask printTask : facade.getPendingPrintTasks()) {
+    public PrintTask doSpoolSelection(PrinterManager printerManager, Printer printer) {
+        for (PrintTask printTask : printerManager.getPendingPrintTasks()) {
             if (printer.isValidTask(printTask, false)) {
-                ArrayList<Spool> newSpools = matchSpools(facade.getFreeSpools(), printTask);
+                ArrayList<Spool> newSpools = matchSpools(printerManager.getFreeSpools(), printTask);
 
                 if (newSpools.size() == printTask.getColors().size()) {
-                    facade.changeSpool(printer, printTask, newSpools);
+                    printerManager.changeSpool(printer, printTask, newSpools);
                     return printTask;
                 }
             }
@@ -51,4 +51,3 @@ public class LessSpoolChangesStrategy implements PrintStrategy {
         return validSpools;
     }
 }
-
