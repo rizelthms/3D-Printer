@@ -12,12 +12,12 @@ import java.util.List;
  */
 public class Menu {
     Scanner scanner = new Scanner(System.in);
-    PrinterManager manager = null;
+    PrinterManagerFacade facade = null;
     private String printStrategy = "Less Spool Changes";
 
     // Call this method from the Main class to display the menu and handle user input.
-    public void menuSwitch(PrinterManager printerManager) {
-        this.manager = printerManager;
+    public void menuSwitch(PrinterManagerFacade printerManagerFacade) {
+        this.facade = printerManagerFacade;
         int choice = 1;
 
         while (choice > 0 && choice < 10) {
@@ -32,14 +32,14 @@ public class Menu {
                 case RegisterPrinterFailure -> registerPrinterFailure();
                 case ChangePrintStrategy -> changePrintStrategy();
                 case StartPrintQueue -> startPrintQueue();
-                case ShowPrints -> manager.showPrints();
-                case ShowPrinters -> manager.showPrinters();
-                case ShowSpools -> manager.showSpools();
-                case ShowPendingPrintTasks -> manager.showPendingPrintTasks();
+                case ShowPrints -> facade.showPrints();
+                case ShowPrinters -> facade.showPrinters();
+                case ShowSpools -> facade.showSpools();
+                case ShowPendingPrintTasks -> facade.showPendingPrintTasks();
                 case InvalidOption -> exit();
                 default -> {
                     System.out.println("no existing orders"); // in the menuchoice we make a nextline which will recover anything not only a int between 0 and 9 so we restart menuswitch until we have a correct value.
-                    menuSwitch(printerManager);
+                    menuSwitch(printerManagerFacade);
                 }
             }
         }
@@ -86,7 +86,7 @@ public class Menu {
 
     public void addNewPrintTask() {
         List<String> colors = new ArrayList<>();
-        var prints = manager.getPrints();
+        var prints = facade.getPrints();
         System.out.println("<<---------- New Print Task ---------->");
         System.out.println("<---------- Available prints ----------");
         int counter = 1;
@@ -98,7 +98,7 @@ public class Menu {
         System.out.print("- Print number: ");
         int printNumber = Inputs.numberInput(1, prints.size());
         System.out.println("-------------------------------------->");
-        Print print = manager.findPrint(printNumber - 1);
+        Print print = facade.findPrint(printNumber - 1);
         String printName = print.getName();
         System.out.println("<---------- Filament Type ----------");
         System.out.println("- 1: PLA");
@@ -117,7 +117,7 @@ public class Menu {
                 return;
             }
         }
-        var spools = manager.getSpools();
+        var spools = facade.getSpools();
         System.out.println("<---------- Colors ----------");
         ArrayList<String> availableColors = new ArrayList<>();
         counter = 1;
@@ -139,34 +139,34 @@ public class Menu {
         }
         System.out.println("-------------------------------------->");
 
-        manager.addPrintTask(printName, colors, type);
+        facade.addPrintTask(printName, colors, type);
         System.out.println("<---------------------------->>");
     }
 
     // TODO: This should be based on which printer is finished printing.
     public void registerPrintCompletion() {
-        ArrayList<Printer> printers = manager.getPrinters();
+        ArrayList<Printer> printers = facade.getPrinters();
         System.out.println("<<---------- Currently Running Printers ---------->");
-        manager.showPrinters();
+        facade.showPrinters();
 
         System.out.print("- Printer that is done (ID): ");
         int printerId = Inputs.numberInput(-1, printers.size());
         System.out.println("<----------------------------------->>");
 
-        manager.registerCompletion(printerId);
+        facade.registerCompletion(printerId);
         System.out.println("Task for Printer: " + printerId + " marked as complete.");
         System.out.println("<----------------------------------->>");
     }
 
     public void registerPrinterFailure() {
-        ArrayList<Printer> printers = manager.getPrinters();
+        ArrayList<Printer> printers = facade.getPrinters();
         System.out.println("<<---------- Currently Running Printers ---------->");
-        manager.showPrinters();
+        facade.showPrinters();
         System.out.print("- Printer ID that failed: ");
         int printerId = Inputs.numberInput(1, printers.size());
         System.out.println("<----------------------------------->>");
 
-        manager.registerPrinterFailure(printerId);
+        facade.registerPrinterFailure(printerId);
         System.out.println("Task for Printer: " + printerId + " marked as failed.");
         System.out.println("<----------------------------------->>");
     }
@@ -183,14 +183,14 @@ public class Menu {
         int strategyChoice = Inputs.numberInput(1, 2);
 
         StrategyOptions strategyOption = StrategyOptions.values()[strategyChoice];
-        manager.selectStrategy(strategyOption);
+        facade.selectStrategy(strategyOption);
         System.out.println("<----------------------------------->>");
     }
 
     // Start printer queue
     public void startPrintQueue() {
         System.out.println("<<---------- Starting Print Queue ---------->");
-        manager.startInitialQueue();
+        facade.startInitialQueue();
         System.out.println("<----------------------------------->>");
     }
 }
