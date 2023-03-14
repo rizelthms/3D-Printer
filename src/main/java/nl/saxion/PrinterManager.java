@@ -19,7 +19,7 @@ public class PrinterManager {
     private ArrayList<PrintTask> pendingPrintTasks = new ArrayList<>();
     private HashMap<Printer, PrintTask> runningPrintTasks = new HashMap();
     Timer taskTimer = new Timer("taskTimer");
-    private PrintStrategy printStrategy = new LessSpoolChangesStrategy();
+    private PrintStrategy printStrategy = new LessSpoolChanges();
 
     public void preload(ArrayList<Print> prints, ArrayList<Printer> printers, ArrayList<Spool> spools) {
         this.prints.addAll(prints);
@@ -164,11 +164,18 @@ public class PrinterManager {
         System.out.println("Added task to queue");
 
     }
-
+    /**
+     * Based on the provided input, swap the strategy instance stored in the printStrategy instance variable
+     * to one of the two strategies.
+     * This would ensure that when selectPrintTask is called, it doesn't care which class, LessSpoolChanges or
+     * EfficientSpoolUsage, actually implements the doSpoolSelection function.
+     *
+     * @param strategyOption The enum value for the strategy chosen.
+     */
     public void selectStrategy(StrategyOptions strategyOption) {
         switch (strategyOption) {
-            case LessSpoolChange -> printStrategy = new LessSpoolChangesStrategy();
-            case EfficientSpoolUsageStrategy -> printStrategy = new EfficientSpoolUsageStrategy();
+            case LessSpoolChange -> printStrategy = new LessSpoolChanges();
+            case EfficientSpoolUsage -> printStrategy = new EfficientSpoolUsage();
             default -> {
             }
         }

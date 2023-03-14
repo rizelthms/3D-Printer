@@ -171,9 +171,10 @@ public class Menu {
         System.out.println("<----------------------------------->>");
     }
 
-    // This method only changes the name but does not actually work.
-    // It exists to demonstrate the output.
-    // in the future strategy might be added.
+    /** Method to change the print strategy.
+     * The selectStrategy function from PrinterManager called via the facade
+     * swaps the strategy instance it holds.
+     */
     public void changePrintStrategy() {
         System.out.println("<<---------- Change Strategy ------------->");
         System.out.println("- Current strategy: " + printStrategy);
